@@ -24,6 +24,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'imager_profile',
+    'django_imager'
 ]
 
 MIDDLEWARE = [

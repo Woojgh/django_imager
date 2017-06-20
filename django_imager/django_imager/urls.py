@@ -13,9 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
+from django.conf.urls import include, url
+from django.http import HttpResponse
+from django.template import loader
 
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-]
+
+def home_view(request):
+    """Home view callable, for the home page."""
+    template = loader.get_template('django_imager/home.html')
+    return HttpResponse("Hello World!")
