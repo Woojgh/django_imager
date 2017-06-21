@@ -62,11 +62,10 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'django_imager.urls'
 
-TEMPLATE_DIRS = (
-      BASE_DIR + '/templates',
-      BASE_DIR + '/registration',
-
-  )
+# TEMPLATE_DIRS = (
+#       BASE_DIR + '/templates',
+#       BASE_DIR + '/registration'
+#   )
 
 TEMPLATES = [
     {
