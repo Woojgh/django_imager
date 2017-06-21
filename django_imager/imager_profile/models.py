@@ -70,7 +70,7 @@ class ImagerProfile(models.Model):
 
 # @reciever(post_save, sender=User)
 def make_profile_for_new_user(sender, **kwargs):
-    if kweargs['created']:
+    if kwargs['created']:
         new_profile = ImagerProfile(
             user=kwargs['instance'],
             )
