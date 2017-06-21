@@ -1,5 +1,6 @@
+{% csrf_token %}
+{% load staticfiles %}
 <!DOCTYPE html>
-  {% load static %}
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/modules.css' %}">
@@ -19,23 +20,8 @@
       </nav>
     </header>
     <main>
-        <section class="login-view">
-        <h2>Login</h2>
-        <form action="" method="POST">
-          {% csrf_token %}
-            <div class="field">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username"/>
-            </div>
-            <div class="field">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password"/>
-            </div>
-            <div class="control_row">
-                <input type="submit" name="login" value="login"/>
-            </div>
-        </form>
-        <section>
+    {{ food }}
+      <!-- <img src="{% static '/django_imager/Death_star_home.jpg' %}"/> -->
       <section class="new-entry">
         {% block create %}
         {% endblock %}
@@ -50,4 +36,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </body>
 </html>
-
+</h1>
+</body>
+</html>
