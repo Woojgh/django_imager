@@ -25,7 +25,6 @@ from imager_profile.views import signup
 
 
 urlpatterns = [
-    # url(r'^(?P<num>\d+)/(?P<word>\w+)$', home_view, name="home"),
     url(r'^$', home_view, name="home"),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
