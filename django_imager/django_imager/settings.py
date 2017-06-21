@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'imager_profile',
     'django_imager',
+    'registration'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -60,6 +61,12 @@ MIDDLEWARE_CLASSES = [
 
 
 ROOT_URLCONF = 'django_imager.urls'
+
+TEMPLATE_DIRS = (
+      BASE_DIR + '/templates',
+      BASE_DIR + '/registration',
+
+  )
 
 TEMPLATES = [
     {
