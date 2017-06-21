@@ -1,0 +1,19 @@
+language: python
+python:
+  - "3.6"
+
+env:
+  - SECRET_KEY='woojh' DATABASE_NAME='django_imager' DATABASE_USER='postgres' DATABASE_HOST="127.0.0.1" DATABASE_PASSWORD=''
+
+install:
+  - pip install -r requirements.pip
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c "create database django_imager;" -U postgres
+
+script: 
+  - python django_imager/manage.py migrate
+  - python django_imager/manage.py test django_imager
