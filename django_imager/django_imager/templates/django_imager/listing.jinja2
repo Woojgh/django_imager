@@ -1,0 +1,44 @@
+{% extends "layout.jinja2" %}
+{% block body %}
+    {% if authenticated %}
+        <article class="icon-home">
+            <ul>
+                <li class="tab"><a href="/journal/new-entry">New Entry</a></li>
+                <li class="tab"><a href="/logout">Logout</a></li>
+            </ul>
+        </article>
+    {% endif %}     
+    {% if journal_entries %}
+        {% for entry in journal_entries %}
+            <article class="entry-list">
+                <hr/>
+                <p><a href="{{ request.route_url('detail_view', id=entry.id) }}">{{ entry.title }}</a></p>
+                <p>Created <strong>{{ entry.creation_date }}</strong></p>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>You have no journal entries to list.</p>
+    {% endif %}
+{% endblock %}
+{% block create %}
+{% if authenticated %}
+    <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}" />
+    <p>Create New Journal Entry</p>
+    <form method="POST">
+        <ul>
+            <li>
+                <label for="title">Title: </label>
+                <input type="text" name="title" value="{{ title }}">
+            </li>
+            <li>
+                <label for="body">Body: </label>
+                <textarea name="body">{{ body }}</textarea>
+            </li>
+        </ul>
+        <input type="submit" value="Submit Journal Entry">
+        {% if consumer_key %}
+            <input type="submit" value="Tweet IT!">
+        {% endif %}
+    </form>
+    {% endif %}
+{% endblock %}

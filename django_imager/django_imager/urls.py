@@ -14,11 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
-from django.http import HttpResponse
-from django.template import loader
+# from django.http import HttpResponse
+# from django.template import loader
+from django.contrib import admin
+from imager_profile.views import home_view, login_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 
-def home_view(request):
-    """Home view callable, for the home page."""
-    template = loader.get_template('django_imager/home.html')
-    return HttpResponse("Hello World!")
+urlpatterns = [
+    # url(r'^(?P<num>\d+)/(?P<word>\w+)$', home_view, name="home"),
+    url(r'^$', home_view, name="home"),
+    url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^login/', login_view, name="login")
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
