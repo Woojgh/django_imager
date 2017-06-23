@@ -1,0 +1,28 @@
+{% extends "django_imager/base.html" %}
+{% block body %}
+{% if user.is_authenticated %}
+    <article class="icon-home">
+        <ul>
+            <li class="tab"><a href="/logout">Logout</a></li>
+            <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
+        </ul>
+    </article>
+{% else %}
+    <li class="tab"><a href="/login" class="icon-home"> Login</a></li>
+{% endif %}
+{% endblock %}
+{% block create %}
+    <h2>Welcome {{ user.username }}</h2>
+    <ul>
+      <li>Location: {{ user.profile.location }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Birth Date: {{ user.profile.birth_date }}</li>
+    </ul>
+{% endblock %}

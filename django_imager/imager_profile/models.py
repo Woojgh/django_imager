@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-# from django
+import datetime
+from django.dispatch import receiver
+
 PHOTO_CHOICES = [
     ("BW", "Black and White"),
     ("PAN", "Panorama"),
@@ -9,6 +11,17 @@ PHOTO_CHOICES = [
     ("LAND", "Panorama"),
     ("COL", "Panorama"),
     ("PAN", "Panorama")
+]
+
+CAMERA_CHOICES = [
+    ('Phillips', 'zoomandsuch'),
+    ('yourface', 'nozoomforyou')
+]
+
+AGE_CHOICES = [
+    ('15', '18'),
+    ('19', '25'),
+    ('26', '+')
 ]
 
 
@@ -36,7 +49,7 @@ class ImagerProfile(models.Model):
             'Unselect this instead of deleting accounts.'
         ),
     )
-    # date_joined = models.DateTimeField(('date joined'), default=timezone.now)
+    date_joined = models.DateTimeField(('date joined'), default=datetime.datetime)
     # friends = models.ManyToManyField(User, related_name="friends")
     username = models.CharField(
         ('username'),
@@ -45,8 +58,8 @@ class ImagerProfile(models.Model):
         help_text=('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.')
         )
     location = models.CharField(max_length=20)
-    # age = models.IntegerField(chioces=AGE_CHOICES)
-    # camera_type = models.ChatField(choices=CAMERA_CHOICES, max_length=3)
+    age = models.IntegerField(choices=AGE_CHOICES)
+    camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=3)
     objects = models.Manager()
     # active = ImageActiveProfile()
 
@@ -56,6 +69,8 @@ class ImagerProfile(models.Model):
 
     def __repr__(self):
         return """
+        user: {}
+        age: {}
         first_name: {}
         last_name: {}
         email: {}
@@ -68,13 +83,17 @@ class ImagerProfile(models.Model):
         camera: {}
         objects: {}
         active: {}
-    """.format(self.user.username, self.photography_style, self.location, self.age, self.camera_type)
+    """.format(self.user, self.user.username, self.first_name, self.last_name, self.email, self.date_joined, self.photography_style, self.location, self.age, self.camera_type)
 
-
-# @reciever(post_save, sender=User)
+@receiver(post_save, sender=User)
 def make_profile_for_new_user(sender, **kwargs):
     if kwargs['created']:
         new_profile = ImagerProfile(
             user=kwargs['instance'],
             )
         new_profile.save()
+
+
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.new_profile.save()
