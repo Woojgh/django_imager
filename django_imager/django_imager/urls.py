@@ -21,7 +21,6 @@ from imager_profile.views import home_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from imager_profile.views import signup
 
 
 urlpatterns = [
