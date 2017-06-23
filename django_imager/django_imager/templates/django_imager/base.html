@@ -14,8 +14,13 @@
       <nav class="main-nav">
         <div class="icon-menu"></div>
         <ul>
+          <li class="tab" data-content="entries"><a href="/admin" class="icon-home" target="_blank"> Admin</a></li>
+          <li class="tab" data-content="entries"><a href="/accounts/register" class="icon-home"> register</a></li>
+        </ul>
+        <ul>
           <li class="tab" data-content="entries"><a href="/" class="icon-home"> Home</a></li>
-          <li class="tab"><a href="/login" class="icon-home"> Login</a></li>
+          {% block body %}
+          {% endblock %}
         </ul>
       </nav>
     </header>
@@ -27,8 +32,6 @@
         {% endblock %}
       </section>
       <section id="content" class="tab-content">
-        {% block body %}
-        {% endblock %}
       </section>
     </main>
     <footer>
