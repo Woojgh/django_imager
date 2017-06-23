@@ -12,11 +12,14 @@ PHOTO_CHOICES = [
 ]
 
 
-# class ImageActiveProfile(models.Manager)
-
 class ImagerProfile(models.Model):
     """Users model when joining"""
-    # user = OneToOne
+    user = models.OneToOneField(
+        User,
+        default=True,
+        related_name="+",
+        null=False
+    )
     first_name = models.CharField(('first name'), max_length=30, blank=True)
     last_name = models.CharField(('last name'), max_length=30, blank=True)
     email = models.EmailField(('email address'), blank=True)
@@ -34,7 +37,7 @@ class ImagerProfile(models.Model):
         ),
     )
     # date_joined = models.DateTimeField(('date joined'), default=timezone.now)
-
+    # friends = models.ManyToManyField(User, related_name="friends")
     username = models.CharField(
         ('username'),
         max_length=30,

@@ -19,15 +19,22 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from imager_profile.views import home_view
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from imager_profile.views import signup
-
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$', home_view, name="home"),
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
+    # url(r'^profile/', include('imager_profile')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^login/$', auth_views.login, {'template_name': 'django_imager/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/accounts/profile'}, name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+        )
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.STATIC_ROOT
+        )
