@@ -50,7 +50,6 @@ class ImagerProfile(models.Model):
         ),
     )
     date_joined = models.DateTimeField(('date joined'), default=datetime.datetime)
-    # friends = models.ManyToManyField(User, related_name="friends")
     username = models.CharField(
         ('username'),
         max_length=30,
@@ -61,7 +60,7 @@ class ImagerProfile(models.Model):
     age = models.IntegerField(choices=AGE_CHOICES)
     camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=3)
     objects = models.Manager()
-    # active = ImageActiveProfile()
+    user_images = models.ImageField()
 
     @property
     def is_active(self):
@@ -85,6 +84,7 @@ class ImagerProfile(models.Model):
         active: {}
     """.format(self.user, self.user.username, self.first_name, self.last_name, self.email, self.date_joined, self.photography_style, self.location, self.age, self.camera_type)
 
+
 @receiver(post_save, sender=User)
 def make_profile_for_new_user(sender, **kwargs):
     if kwargs['created']:
@@ -92,8 +92,3 @@ def make_profile_for_new_user(sender, **kwargs):
             user=kwargs['instance'],
             )
         new_profile.save()
-
-
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.new_profile.save()

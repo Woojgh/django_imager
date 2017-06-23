@@ -14,15 +14,13 @@
 {% block create %}
     <h2>Welcome {{ user.username }}</h2>
     <ul>
-      <li>Location: {{ user.profile.location }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
-      <li>Birth Date: {{ user.profile.birth_date }}</li>
+      <li>Location: {{ user.location }}</li>
+      <li>First Name: {{ user.first_name }}</li>
+      <li>Last Name: {{ user.last_name }}</li>
+      <li>Email: {{ user.email }}</li>
+      <li>Date Joined: {{ user.date_joined }}</li>
+      <li>Camera: {{ user.camera }}</li>
+      <li>Active: {{ user.is_active }}</li>
+      <li>Birth Date: {{ user.birth_date }}</li>
     </ul>
 {% endblock %}
