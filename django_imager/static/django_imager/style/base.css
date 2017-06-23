@@ -1,0 +1,26 @@
+body {
+  /*font-size: 3vw;*/
+  background-color:cornsilk;
+  color:cornsilk;
+}
+
+h1 {
+  font-size: 8vw;
+  text-align:center;
+}
+
+h2 {
+    font-size: 6vw;
+}
+
+h3 {
+    padding:0vw 4vw;
+}
+
+main {
+  text-align: center;
+}
+
+article {
+    background-color: #211702;
+}

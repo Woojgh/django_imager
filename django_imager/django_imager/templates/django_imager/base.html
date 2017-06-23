@@ -1,0 +1,41 @@
+{% csrf_token %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/modules.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/layouts.css' %}">
+  </head>
+  <body>
+    <header class="site-header clearfix">
+      <section class="heading-group-h1">
+        <h1>JourNull EntTrees</h1>
+      <nav class="main-nav">
+        <div class="icon-menu"></div>
+        <ul>
+          <li class="tab" data-content="entries"><a href="/" class="icon-home"> Home</a></li>
+          <li class="tab"><a href="/login" class="icon-home"> Login</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+    {{ food }}
+      <!-- <img src="{% static '/django_imager/Death_star_home.jpg' %}"/> -->
+      <section class="new-entry">
+        {% block create %}
+        {% endblock %}
+      </section>
+      <section id="content" class="tab-content">
+        {% block body %}
+        {% endblock %}
+      </section>
+    </main>
+    <footer>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
+</html>
+</h1>
+</body>
+</html>
