@@ -1,6 +1,11 @@
 {% extends "django_imager/base.html" %}
 {% block body %}
 {% if user.is_authenticated %}
+<!-- {% if registered %}
+    <ul>
+        <li class="tab" data-content="entries"><a href="/admin" class="icon-home" target="_blank"> Admin</a></li>
+    </ul>
+{% endif %} -->
     <article class="icon-home">
         <ul>
             <li class="tab"><a href="/logout">Logout</a></li>
