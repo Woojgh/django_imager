@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from models import Photo
+from user_images.models import Photo
 # Create your views here.
 
 

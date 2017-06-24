@@ -66,7 +66,7 @@ class ImagerProfile(models.Model):
     age = models.CharField(choices=AGE_CHOICES, default=18, max_length=150)
     camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=150, default='Phillips')
     objects = models.Manager()
-    user_images = models.ImageField(default="nothing.jpg")
+    user_images = models.ImageField
 
     @property
     def is_active(self):
@@ -88,8 +88,9 @@ class ImagerProfile(models.Model):
         location: {}
         camera_type: {}
         objects: {}
-        user_images: {}
+        user_iamges: {}
     """.format(self.user, self.age, self.first_name, self.last_name, self.email, self.is_staff, self.is_active, self.username, self.location, self.camera_type, self.objects, self.user_images)
+
 
 @receiver(post_save, sender=User)
 def make_profile_for_new_user(sender, **kwargs):

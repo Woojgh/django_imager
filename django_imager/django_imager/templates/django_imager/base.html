@@ -29,6 +29,10 @@
         {% endblock %}
       </section>
       <section id="content" class="tab-content">
+      {% load thumbnail %}
+      {% thumbnail item.image "100x100" crop="center" as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" />
+      {% endthumbnail %}
       </section>
     </main>
     <footer>

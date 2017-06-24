@@ -25,7 +25,7 @@ def logout_view(request):
 
 
 def user_images_view(request):
-    img = Images.objects.all()
+    img = Photo.objects.all()
     # import pdb; pdb.set_trace()
     return render(request, 'images/user_images.html', {"img": img})
     # user = getattr(request, 'user', None)
