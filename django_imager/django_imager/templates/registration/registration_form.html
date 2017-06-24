@@ -1,7 +1,7 @@
 {% extends 'django_imager/base.html' %}
 
 {% block body %}
-    <h2>Sign Up</h2>
+    <p class="title">Sign Up</p>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

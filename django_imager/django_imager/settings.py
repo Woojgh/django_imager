@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'imager_profile',
     'django_imager',
     'registration',
-    'user_images'
+    'user_images',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -150,7 +151,8 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = (BASE_DIR)
 
 ACCOUNT_ACTIVATION_DAYS = 7
 

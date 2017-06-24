@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
 
+
 def home_view(request):
     """Home view callable, for the home page."""
     context = {'food': 'steak'}
@@ -19,6 +20,11 @@ def profile_view(request):
 def logout_view(request):
     # message user or whatever
     return auth_views.logout(request)
+
+
+def user_images_view(request):
+    # import pdb; pdb.set_trace()
+    return render(request, 'images/user_images.html')
     # user = getattr(request, 'user', None)
     # if hasattr(user, 'is_authenticated') and not user.is_authenticated:
     #     user = None

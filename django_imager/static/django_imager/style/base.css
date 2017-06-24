@@ -24,3 +24,7 @@ main {
 article {
     background-color: #211702;
 }
+
+form p {
+    color: #211702;
+}
