@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
-from user_images.models import Images
+from user_images.models import Photo
+from user_images.models import Album
 
 
 def home_view(request):

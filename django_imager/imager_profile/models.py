@@ -1,7 +1,7 @@
+"""Model for our imager profiles."""
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from datetime import datetime
 from django.dispatch import receiver
 
 PHOTO_CHOICES = [
@@ -61,7 +61,7 @@ class ImagerProfile(models.Model):
             'Unselect this instead of deleting accounts.'
         ),
     )
-    # date_joined = models.DateField(auto_now_add=True)
+    date_joined = models.DateField(auto_now_add=True, null=True)
     location = models.CharField(max_length=20, blank=True)
     age = models.CharField(choices=AGE_CHOICES, default=18, max_length=150)
     camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=150, default='Phillips')
