@@ -49,24 +49,26 @@ class ImagerProfile(models.Model):
             'Unselect this instead of deleting accounts.'
         ),
     )
-    date_joined = models.DateTimeField(('date joined'), default=datetime.datetime)
+    # date_joined = models.DateField(auto_now_add=True)
     username = models.CharField(
         ('username'),
         max_length=30,
         unique=True,
         help_text=('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.')
-        )
-    location = models.CharField(max_length=20)
-    age = models.IntegerField(choices=AGE_CHOICES)
-    camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=3)
+    )
+    location = models.CharField(max_length=20, blank=True)
+    age = models.IntegerField(choices=AGE_CHOICES, null=True)
+    camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=150, default='Phillips')
     objects = models.Manager()
-    user_images = models.ImageField()
+    user_images = models.ImageField(default="nothing.jpg")
 
     @property
     def is_active(self):
+        """."""
         return self.user.is_active
 
     def __repr__(self):
+        """."""
         return """
         user: {}
         age: {}
@@ -78,17 +80,15 @@ class ImagerProfile(models.Model):
         date_joined: {}
         username: {}
         location: {}
-        age: {}
-        camera: {}
+        camera_type: {}
         objects: {}
-        active: {}
-    """.format(self.user, self.user.username, self.first_name, self.last_name, self.email, self.date_joined, self.photography_style, self.location, self.age, self.camera_type)
-
+        user_images: {}
+    """.format(self.user, self.age, self.first_name, self.last_name, self.email, self.is_staff, self.is_active, self.username, self.location, self.camera_type, self.objects, self.user_images)
 
 @receiver(post_save, sender=User)
 def make_profile_for_new_user(sender, **kwargs):
     if kwargs['created']:
         new_profile = ImagerProfile(
             user=kwargs['instance'],
-            )
+        )
         new_profile.save()

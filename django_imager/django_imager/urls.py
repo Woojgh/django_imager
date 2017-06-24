@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^$', home_view, name="home"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^profile/', profile_view, name="profile"),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^login/$', auth_views.login, {'template_name': 'django_imager/login.html'}, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
