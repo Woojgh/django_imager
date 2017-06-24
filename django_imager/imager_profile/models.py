@@ -50,12 +50,11 @@ class ImagerProfile(models.Model):
         ),
     )
     # date_joined = models.DateField(auto_now_add=True)
-    username = models.CharField(
-        ('username'),
-        max_length=30,
-        unique=True,
-        help_text=('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.')
-    )
+    # username = models.CharField(
+    #     max_length=30,
+    #     unique=True,
+    #     help_text=('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.')
+    # )
     location = models.CharField(max_length=20, blank=True)
     age = models.IntegerField(choices=AGE_CHOICES, null=True)
     camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=150, default='Phillips')
