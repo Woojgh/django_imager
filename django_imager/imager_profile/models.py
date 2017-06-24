@@ -19,9 +19,21 @@ CAMERA_CHOICES = [
 ]
 
 AGE_CHOICES = [
-    ('15', '18'),
-    ('19', '25'),
-    ('26', '+')
+    ('15', '15'),
+    ('16', '16'),
+    ('17', '17'),
+    ('18', '18'),
+    ('19', '19'),
+    ('20', '20'),
+    ('21', '21'),
+    ('22', '22'),
+    ('23', '23'),
+    ('24', '24'),
+    ('25', '25'),
+    ('26', '26'),
+    ('27', '27'),
+    ('28', '28'),
+
 ]
 
 
@@ -51,7 +63,7 @@ class ImagerProfile(models.Model):
     )
     # date_joined = models.DateField(auto_now_add=True)
     location = models.CharField(max_length=20, blank=True)
-    age = models.IntegerField(choices=AGE_CHOICES, null=True)
+    age = models.CharField(choices=AGE_CHOICES, default=18, max_length=150)
     camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=150, default='Phillips')
     objects = models.Manager()
     user_images = models.ImageField(default="nothing.jpg")
