@@ -24,7 +24,7 @@ in web browser navigate to http://localhost:8000/
 
 ## Meta
 * James Salamonsen – [Linked In](https://www.linkedin.com/in/james-salamonsen-12237b82/) [@Woojgh](https://twitter.com/woojgh) – JamesSalamonsen@gmail.com
-* A Shelby
+* Anna Shelby - [Linked In](https://www.linkedin.com/in/annashelby/) 
 
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
@@ -33,7 +33,7 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 
 ## Contributing
 
-1. Fork it (<https://github.com/Woojgh/DNA>)
+1. Fork it (<https://github.com/Woojgh/django_imager>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
