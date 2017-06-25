@@ -10,17 +10,14 @@
 {% block create %}
     <p class="album-title">Albums:</p>
 <ul>
+    <li class="icon-album" >
+        <a href="/thumb">Thumbnail</a>
+    </li>
 {% for albums in albums %}
     <li class="icon-album" >
         <a href="{{ albums.title }}">{{ albums.title }}</a>
     </li>
 {% endfor %}
-{% for item in item %}
-    {% thumbnail item.images "100x100" crop="center" as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-    {% endthumbnail %}
-{% endfor %}
-
 </ul>
     <p class="album-title">Photos:</p>
 <ul>

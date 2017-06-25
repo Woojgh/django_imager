@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
 from user_images.models import Photo, Album, Item
-# from user_images.models import Album
+from django.core.cache import cache
 
 
 def home_view(request):
@@ -36,8 +36,8 @@ def image_view(request):
 
 
 def thumb_view(request):
-    item = Item.objects.all()
+    items = Item.objects.all()
     context = {
-        "item": item,
+        "items": items,
         }
-    return render(request, 'user_images/user_images.html', context=context)
+    return render(request, 'user_images/thumb.html', context=context)

@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
     url(r'^media/$', image_view, name='media'),
-    url(r'^thumbnail/$', thumb_view, name='thumbnails'),
+    url(r'^thumb/$', thumb_view, name='thumb'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
