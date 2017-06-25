@@ -59,7 +59,7 @@
 
 .body-each-p {
   border-radius: 5px;
-  border:5px solid #211702;
+  border:3.5px solid #211702;
   color: #211702;
 }
 
@@ -175,14 +175,12 @@
 }
 
 .main-nav ul {
-  font-size: 3vw;
   list-style: none;
   /*padding: 0;*/
   /*clear: both;*/
 }
 
 .main-nav ul li {
-    border-bottom: none;
     display: inline;
     font-size: 3vw;
 }
@@ -194,6 +192,9 @@
 .main-nav {
   text-align:center;
   border-radius: 5px;
+  border:2px solid #211702;
+  border-top: none;
+  margin: 0vw 35vw;
 }
 
 .main-nav li {
