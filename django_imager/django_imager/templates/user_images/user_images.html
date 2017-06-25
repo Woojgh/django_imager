@@ -1,4 +1,5 @@
 {% extends "django_imager/base.html" %}
+{% load thumbnail %}
 {% block body %}
 {% if user.is_authenticated %}
     <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
@@ -14,6 +15,12 @@
         <a href="{{ albums.title }}">{{ albums.title }}</a>
     </li>
 {% endfor %}
+{% for item in item %}
+    {% thumbnail item.images "100x100" crop="center" as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+{% endfor %}
+
 </ul>
     <p class="album-title">Photos:</p>
 <ul>
@@ -23,9 +30,5 @@
     </li>
 {% endfor %}
 </ul>
-<!-- {% load thumbnail %}
-{% thumbnail usr_images.meda.images "100x100" crop="center" as im %}
-    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-{% endthumbnail %} -->
 {% endblock %}
 

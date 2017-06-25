@@ -1,6 +1,6 @@
 """Model for our user images."""
 from django.db import models
-# from sorl.thumbnail import ImageField  # , BaseImageFile, ThumbnailError
+from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
 
 
@@ -34,6 +34,16 @@ class Photo(models.Model):
         date_published: {}
         published: {}
         """.format(self.user, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
+
+
+class Item(models.Model):
+    image = ImageField(upload_to='thumbnails', null=True)
+
+    def __repr__(self):
+        """."""
+        return """
+        image: {}
+        """.format(self.image)
 
 
 class Album(models.Model):
