@@ -1,9 +1,0 @@
-{% extends "django_imager/base.html" %}
-{% load thumbnail %}
-{% block body %}
-        <img src="{{ ../media/images/2017-06-24/1651-00.jpg }}" />
-{% thumbnail images "100x100" crop="center" as im %}
-    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-{% endthumbnail %}
-{% endblock %}
-

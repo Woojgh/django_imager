@@ -1,5 +1,6 @@
 """Model for our user images."""
 from django.db import models
+# from sorl.thumbnail import ImageField  # , BaseImageFile, ThumbnailError
 from django.contrib.auth.models import User
 
 
@@ -12,7 +13,7 @@ PUBLISHED_CHOICES = [
 
 class Photo(models.Model):
     user = models.ForeignKey(User)
-    image = models.ImageField(upload_to='images/%Y-%m-%d')
+    image = models.ImageField(upload_to='uploaded_images/%Y-%m-%d', null=True)
     title = models.CharField(max_length=140, blank=False)
     description = models.CharField(max_length=200, blank=True)
     date_uploaded = models.DateField(auto_now=True)
@@ -22,6 +23,7 @@ class Photo(models.Model):
 
     def __repr__(self):
         """."""
+        # return "<Photo: {}>".format(self.title)
         return """
         user: {}
         image: {}
@@ -32,10 +34,6 @@ class Photo(models.Model):
         date_published: {}
         published: {}
         """.format(self.user, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
-
-    def user_directory_path(instance, filename):
-        # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-        return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 
 class Album(models.Model):
@@ -52,11 +50,11 @@ class Album(models.Model):
         """."""
         return """
         user: {}
-        image: {}
+        photo: {}
         title: {}
         description: {}
         date_uploaded: {}
         date_modified: {}
         date_published: {}
         published: {}
-        """.format(self.user, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
+        """.format(self.user, self.photo, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)

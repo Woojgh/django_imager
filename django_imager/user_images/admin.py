@@ -4,5 +4,9 @@ from .models import Photo
 from .models import Album
 
 
-admin.site.register(Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    """."""
+    list_display = ('title', 'user', 'id')
+
+admin.site.register(Photo, PhotoAdmin)
 admin.site.register(Album)

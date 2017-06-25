@@ -106,6 +106,9 @@
   padding: 2vw 1vw 1vw 1vw;
 }
 
+.something ul {
+  display:inline;
+}
 
 .icon-menu {
   font-size: 3em;
@@ -114,9 +117,23 @@
 }
 
 .icon-register {
-  text-align: right;
-  font-size: 1em;
-  height:1px;
+  float:right;
+  list-style: none;
+  }
+
+.icon-register a {
+  color:#211702;
+  text-decoration: none;
+}
+
+.icon-admin {
+  float: left;
+  list-style: none;
+  }
+
+.icon-admin a {
+  color:#211702;
+  text-decoration: none;
 }
 
 .title {

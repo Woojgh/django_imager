@@ -24,10 +24,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
+# DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 ALLOWED_HOSTS = []
 
+# ACCOUNT_LOGOUT_ON_GET = True
 
 # Application definition
 
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     'django_imager',
     'registration',
     'user_images',
-    'sorl.thumbnail'
+
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -145,12 +147,11 @@ REGISTRATION_OPEN = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
     '/var/www/static/',
 ]
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, "media")

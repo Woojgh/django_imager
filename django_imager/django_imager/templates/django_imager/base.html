@@ -1,6 +1,6 @@
-{% csrf_token %}
-{% load staticfiles %}
 <!DOCTYPE html>
+{% load staticfiles %}
+{% csrf_token %}
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/modules.css' %}">
@@ -8,9 +8,14 @@
     <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/layouts.css' %}">
   </head>
   <body>
-    <p class="icon-register"><a href="/accounts/register""> Register</a></p>
     <header class="clearfix">
-      <section>
+    <section class="something">
+    <ul>
+      <li class="icon-admin"><a href="/admin""> Admin</a></li>
+      <li class="icon-register"><a href="/accounts/register""> Register</a></li>
+    </ul>
+    </section>
+    <section>
         <p class="title">JourNull EntTrees</p>
       <nav class="main-nav">
         <div class="icon-menu"></div>
@@ -22,17 +27,12 @@
       </nav>
     </header>
     <main>
-    {{ food }}
       <!-- <img src="{% static '/django_imager/Death_star_home.jpg' %}"/> -->
       <section class="new-entry">
         {% block create %}
         {% endblock %}
       </section>
       <section id="content" class="tab-content">
-      {% load thumbnail %}
-      {% thumbnail item.image "100x100" crop="center" as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" />
-      {% endthumbnail %}
       </section>
     </main>
     <footer>

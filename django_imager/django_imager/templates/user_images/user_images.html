@@ -1,0 +1,24 @@
+{% extends "django_imager/base.html" %}
+{% block body %}
+{% if user.is_authenticated %}
+    <li class="tab"><a href="/logout">Logout</a></li>
+    <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
+    <li class="tab"><a href="/images">Images</a></li>
+{% else %}
+    <li class="tab"><a href="/login"> Login</a></li>
+{% endif %}
+{% endblock %}
+{% block create %}
+<ul>
+{% for photos in photos %}
+    <li>
+        <img src="{{ photos.image }}" />
+    </li>
+{% endfor %}
+</ul>
+<!-- {% load thumbnail %}
+{% thumbnail usr_images.meda.images "100x100" crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+{% endthumbnail %} -->
+{% endblock %}
+
