@@ -9,6 +9,15 @@
 {% endif %}
 {% endblock %}
 {% block create %}
+<p class="album-title">Albums:</p>
+<ul>
+{% for albums in albums %}
+    <li class="icon-album" >
+        <a href="{{ albums.title }}">{{ albums.title }}</a>
+    </li>
+{% endfor %}
+</ul>
+<p class="album-title">Photos:</p>
 <ul>
 {% for photos in photos %}
     <li>

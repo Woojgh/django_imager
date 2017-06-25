@@ -1,7 +1,7 @@
 body {
   /*font-size: 3vw;*/
   background-color:cornsilk;
-  color:cornsilk;
+  color: #211702;
 }
 
 h1 {
@@ -18,6 +18,7 @@ h3 {
 }
 
 main {
+  color: #211702;
   text-align: center;
 }
 

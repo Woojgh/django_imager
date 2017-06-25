@@ -21,6 +21,10 @@
   list-style: none;
 }
 
+.album-title {
+   color: #211702;
+}
+
 .entry-list {
   text-decoration: none;
   font-size: 2vw;
@@ -124,6 +128,14 @@
 .icon-register a {
   color:#211702;
   text-decoration: none;
+}
+
+.icon-album a {
+  text-decoration: none;
+  color:#211702;
+  margin-right: .4em;
+  font-size: 2vw;
+  padding: .5em .2em;
 }
 
 .icon-admin {

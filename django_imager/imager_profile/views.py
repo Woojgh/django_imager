@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
-from user_images.models import Photo
+from user_images.models import Photo, Album
 # from user_images.models import Album
 
 
@@ -26,6 +26,10 @@ def logout_view(request):
 
 def image_view(request):
     photos = Photo.objects.all()
-    context = {"photos": photos}
+    albums = Album.objects.all()
+    context = {
+        "photos": photos,
+        "albums": albums
+        }
     # import pdb; pdb.set_trace()
     return render(request, 'user_images/user_images.html', context=context)
