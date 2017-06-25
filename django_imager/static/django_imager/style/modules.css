@@ -182,11 +182,31 @@
 
 .main-nav ul li {
     display: inline;
-    font-size: 3vw;
+    font-size: 1vw;
+}
+
+.top-nav ul {
+  /*padding: 0;*/
+  /*clear: both;*/
+}
+
+.top-nav ul li {
+  text-decoration: none;
+  list-style: none;
+  display: inline;
+  font-size: 3vw;
 }
 
 .nav:hover ul {
 
+}
+
+.top-nav {
+  text-align:center;
+  border-radius: 5px;
+  border:2px solid #211702;
+  border-top: none;
+  margin: 0vw 35vw;
 }
 
 .main-nav {
@@ -197,10 +217,18 @@
   margin: 0vw 35vw;
 }
 
-.main-nav li {
+.top-nav li {
+  text-decoration: none;
   color:#211702;
   margin-right: .4em;
   font-size: 4vw;
+  padding: .5em .2em;
+}
+
+.main-nav li {
+  color:#211702;
+  margin-right: .4em;
+  font-size: 1vw;
   padding: .5em .2em;
 }
 
@@ -215,6 +243,17 @@
   height:40vw;
   width:70vw;
 }
+
+.top-nav li a {
+  text-decoration: none;
+  color:#211702;
+}
+
+.top-nav ul li:hover a {
+    color:#001259;
+    -webkit-text-stroke-width: .3px;
+    -webkit-text-stroke-color: #211702;
+  }
 
 .main-nav li a {
   text-decoration: none;

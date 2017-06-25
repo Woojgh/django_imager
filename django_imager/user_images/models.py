@@ -2,6 +2,7 @@
 from django.db import models
 from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
+from django.core.cache import cache
 
 
 PUBLISHED_CHOICES = [
@@ -38,6 +39,7 @@ class Photo(models.Model):
 
 class Item(models.Model):
     image = ImageField(upload_to='thumbnails', null=True)
+    cache.set('image', image)
 
     def __repr__(self):
         """."""
