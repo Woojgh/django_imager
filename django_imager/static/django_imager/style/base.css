@@ -1,11 +1,11 @@
 body {
   /*font-size: 3vw;*/
   background-color:cornsilk;
-  color:cornsilk;
+  color: #211702;
 }
 
 h1 {
-  font-size: 8vw;
+  font-size: 64px;
   text-align:center;
 }
 
@@ -18,9 +18,14 @@ h3 {
 }
 
 main {
+  color: #211702;
   text-align: center;
 }
 
 article {
     background-color: #211702;
+}
+
+form p {
+    color: #211702;
 }

@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 # from django.http import HttpResponse
 # from django.template import loader
 from django.contrib import admin
-from imager_profile.views import home_view, profile_view, logout_view
+from imager_profile.views import home_view, profile_view, logout_view, image_view, thumb_view
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
@@ -26,9 +26,11 @@ urlpatterns = [
     url(r'^$', home_view, name="home"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^profile/', profile_view, name="profile"),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^login/$', auth_views.login, {'template_name': 'django_imager/login.html'}, name='login'),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
+    url(r'^media/$', image_view, name='media'),
+    url(r'^thumbnail/$', thumb_view, name='thumbnails'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
@@ -36,5 +38,5 @@ if settings.DEBUG:
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
         )
     urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.STATIC_ROOT
+        settings.STATIC_URL, document_root=settings.STATIC_ROOT
         )

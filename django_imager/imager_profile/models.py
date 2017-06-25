@@ -1,7 +1,7 @@
+"""Model for our imager profiles."""
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-import datetime
 from django.dispatch import receiver
 
 PHOTO_CHOICES = [
@@ -19,9 +19,21 @@ CAMERA_CHOICES = [
 ]
 
 AGE_CHOICES = [
-    ('15', '18'),
-    ('19', '25'),
-    ('26', '+')
+    ('15', '15'),
+    ('16', '16'),
+    ('17', '17'),
+    ('18', '18'),
+    ('19', '19'),
+    ('20', '20'),
+    ('21', '21'),
+    ('22', '22'),
+    ('23', '23'),
+    ('24', '24'),
+    ('25', '25'),
+    ('26', '26'),
+    ('27', '27'),
+    ('28', '28'),
+
 ]
 
 
@@ -33,40 +45,19 @@ class ImagerProfile(models.Model):
         related_name="+",
         null=False
     )
-    first_name = models.CharField(('first name'), max_length=30, blank=True)
-    last_name = models.CharField(('last name'), max_length=30, blank=True)
-    email = models.EmailField(('email address'), blank=True)
-    is_staff = models.BooleanField(
-        ('staff status'),
-        default=False,
-        help_text=('Designates whether the user can log into this admin site.')
-    )
-    is_active = models.BooleanField(
-        ('active'),
-        default=True,
-        help_text=(
-            'Designates whether this user should be treated as active. '
-            'Unselect this instead of deleting accounts.'
-        ),
-    )
-    date_joined = models.DateTimeField(('date joined'), default=datetime.datetime)
-    username = models.CharField(
-        ('username'),
-        max_length=30,
-        unique=True,
-        help_text=('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.')
-        )
-    location = models.CharField(max_length=20)
-    age = models.IntegerField(choices=AGE_CHOICES)
-    camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=3)
+    date_joined = models.DateField(auto_now_add=True, null=True)
+    location = models.CharField(max_length=20, blank=True)
+    age = models.CharField(choices=AGE_CHOICES, default=18, max_length=150)
+    camera_type = models.CharField(choices=CAMERA_CHOICES, max_length=150, default='Phillips')
     objects = models.Manager()
-    user_images = models.ImageField()
 
     @property
     def is_active(self):
+        """."""
         return self.user.is_active
 
     def __repr__(self):
+        """."""
         return """
         user: {}
         age: {}
@@ -78,11 +69,9 @@ class ImagerProfile(models.Model):
         date_joined: {}
         username: {}
         location: {}
-        age: {}
-        camera: {}
+        camera_type: {}
         objects: {}
-        active: {}
-    """.format(self.user, self.user.username, self.first_name, self.last_name, self.email, self.date_joined, self.photography_style, self.location, self.age, self.camera_type)
+    """.format(self.user, self.age, self.first_name, self.last_name, self.email, self.is_staff, self.is_active, self.username, self.location, self.camera_type, self.objects)
 
 
 @receiver(post_save, sender=User)
@@ -90,5 +79,5 @@ def make_profile_for_new_user(sender, **kwargs):
     if kwargs['created']:
         new_profile = ImagerProfile(
             user=kwargs['instance'],
-            )
+        )
         new_profile.save()

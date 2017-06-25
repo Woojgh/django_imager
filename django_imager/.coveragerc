@@ -6,6 +6,7 @@ omit =
     django_imager/wsgi.py
 
 source =
+    user_images
     imager_profile
     django_imager
 

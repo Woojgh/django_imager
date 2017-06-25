@@ -1,6 +1,6 @@
-{% csrf_token %}
-{% load staticfiles %}
 <!DOCTYPE html>
+{% load staticfiles %}
+{% csrf_token %}
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/modules.css' %}">
@@ -8,15 +8,22 @@
     <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/layouts.css' %}">
   </head>
   <body>
-    <header class="site-header clearfix">
-      <section class="heading-group-h1">
-        <h1>JourNull EntTrees</h1>
-      <nav class="main-nav">
-        <div class="icon-menu"></div>
-        <ul>
-          <li class="tab" data-content="entries"><a href="/admin" class="icon-home" target="_blank"> Admin</a></li>
-          <li class="tab" data-content="entries"><a href="/accounts/register" class="icon-home"> register</a></li>
-        </ul>
+    <header class="clearfix">
+    <section class="something">
+    <ul>
+    {% if user.is_authenticated %}
+      <li class="icon-admin"><a href="/admin""> Admin</a></li>
+      <li class="icon-register"><a href="/logout"> Logout</a></li>
+    {% else %}
+      <li class="icon-register"><a href="/accounts/register""> Register</a></li>
+    {% endif %}
+    </ul>
+    </section>
+    <section>
+        <div class="title">JourNull EntTrees</div>
+    </section>
+    <section>
+        <nav class="main-nav">
         <ul>
           <li class="tab" data-content="entries"><a href="/" class="icon-home"> Home</a></li>
           {% block body %}
@@ -25,7 +32,6 @@
       </nav>
     </header>
     <main>
-    {{ food }}
       <!-- <img src="{% static '/django_imager/Death_star_home.jpg' %}"/> -->
       <section class="new-entry">
         {% block create %}

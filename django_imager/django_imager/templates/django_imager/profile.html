@@ -1,18 +1,13 @@
 {% extends "django_imager/base.html" %}
 {% block body %}
 {% if user.is_authenticated %}
-    <article class="icon-home">
-        <ul>
-            <li class="tab"><a href="/logout">Logout</a></li>
-            <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
-        </ul>
-    </article>
+    <li class="tab"><a href="/media">Images</a></li>
 {% else %}
-    <li class="tab"><a href="/login" class="icon-home"> Login</a></li>
+    <li class="tab"><a href="/login"> Login</a></li>
 {% endif %}
 {% endblock %}
 {% block create %}
-    <h2>Welcome {{ user.username }}</h2>
+    <p class='title'>Welcome {{ user.username }}</p>
     <ul>
       <li>Location: {{ user.location }}</li>
       <li>First Name: {{ user.first_name }}</li>
@@ -22,5 +17,6 @@
       <li>Camera: {{ user.camera }}</li>
       <li>Active: {{ user.is_active }}</li>
       <li>Birth Date: {{ user.birth_date }}</li>
+      <li>Images: {{user.images}}</li>
     </ul>
 {% endblock %}

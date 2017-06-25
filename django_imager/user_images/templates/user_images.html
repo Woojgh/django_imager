@@ -1,0 +1,15 @@
+{% extends "django_imager/base.html" %}
+{% block body %}
+<ul>
+{% for photo in photos %}
+    <li>
+        <img src="{{ photo.photos.value }}" />
+    </li>
+{% endfor %}
+</ul>
+<!-- {% load thumbnail %}
+{% thumbnail usr_images.meda.images "100x100" crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+{% endthumbnail %} -->
+{% endblock %}
+
