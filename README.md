@@ -9,7 +9,16 @@ This project will create a photo album website.  It will allow users to register
 ## Local setup
 
 ```sh
-git clone 
+git clone https://github.com/Woojgh/django_imager.git
+
+navigate to root directory: python3 -m venv ENV
+                            source ENV/bin/activate
+                            pip install -r requirements.pip
+                            
+cd into django_imager: ./manage.py migrate
+                       ./manage.py runserver
+                       
+in web browser navigate to 
 ```
 
 
