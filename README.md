@@ -18,7 +18,7 @@ navigate to root directory: python3 -m venv ENV
 cd into django_imager: ./manage.py migrate
                        ./manage.py runserver
                        
-in web browser navigate to 
+in web browser navigate to http://localhost:8000/
 ```
 
 
