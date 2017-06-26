@@ -1,6 +1,7 @@
 # Django Imager
 This project will create a photo album website.  It will allow users to register and have their own personal image storage and display page.
 
+![alt text](https://github.com/Woojgh/django_imager/blob/master/django_imager/static/admin/img/Screen%20Shot%202017-06-25%20at%207.10.15%20PM.png)
 
 * Link to Deployed Website - 
 * Link to local deployment - localhost:8000
