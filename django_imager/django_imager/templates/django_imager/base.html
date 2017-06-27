@@ -13,23 +13,26 @@
     <section class="something">
     <ul>
     {% if user.is_authenticated %}
-      <li class="icon-admin"><a href="/admin""> Admin</a></li>
+      <li class="icon-admin"><a href="/admin"> Admin</a></li>
       <li class="icon-register"><a href="/logout"> Logout</a></li>
     {% else %}
-      <li class="icon-register"><a href="/accounts/register""> Register</a></li>
+      <li class="icon-register"><a href="/accounts/register"> Register</a></li>
     {% endif %}
     </ul>
     </section>
     <section>
-        <div class="title">JourNull EntTrees</div>
+      <div class="title-pic">
+        <img src="media/title.jpg" />
+      </div>
+      <div class="title">JourNull EntTrees</div>
     </section>
     <section>
-        <nav class="top-nav">
-        <ul>
-          <li class="tab" data-content="entries"><a href="/" class="icon-home"> Home</a></li>
-          {% block body %}
-          {% endblock %}
-        </ul>
+      <nav class="top-nav">
+      <ul>
+        <li class="tab" data-content="entries"><a href="/" class="icon-home"> Home</a></li>
+        {% block body %}
+        {% endblock %}
+      </ul>
       </nav>
     </header>
     <main>
