@@ -7,6 +7,8 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+django_imager/media/*
+!django_imager/media/.gitkeep
 .DS_Store
 .Python
 env/
