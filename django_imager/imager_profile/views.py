@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
-from user_images.models import Photo, Album, Item
+from user_images.models import Photo, Album, Item, AddImage
 from django.core.cache import cache
+from django.http import HttpResponse, HttpResponseRedirect
+from user_images.models import ImageUploadForm
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.core.urlresolvers import reverse
 
 
 def home_view(request):
@@ -33,6 +38,19 @@ def image_view(request):
         }
     # import pdb; pdb.set_trace()
     return render(request, 'user_images/user_images.html', context=context)
+
+
+def add_image_view(request):
+    # context = {'image': image}
+    # return render(request, 'user_images/add_image.html', context=context)
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = AddImage.objects.get()
+            # m = ExampleModel.objects.get(pk=course_id)
+            image.image = form.cleaned_data['image']
+            image.save()
+            return HttpResponseRedirect(reverse('django_imager.imager_profile.views.image_view'))
 
 
 def thumb_view(request):
