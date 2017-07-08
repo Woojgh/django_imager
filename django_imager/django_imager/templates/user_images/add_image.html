@@ -1,0 +1,31 @@
+{% extends "django_imager/base.html" %}
+{% block body %}
+{% if user.is_authenticated %}
+<!-- {% if registered %}
+    <ul>
+        <li class="tab" data-content="entries"><a href="/admin" class="icon-home" target="_blank"> Admin</a></li>
+    </ul>
+{% endif %} -->
+    <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
+    <li class="tab"><a href="/media">Images</a></li>
+{% else %}
+    <li class="tab"><a href="/login" class="icon-home"> Login</a></li>
+{% endif %}
+{% endblock %}
+{% block create %}
+    <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}" />
+    <h1>Create New Journal Entry</h1>
+    <form method="POST">
+        <ul>
+            <li>
+                <label for="title">Title: </label>
+                <input type="text" name="title" value="{{ title }}">
+            </li>
+            <li>
+                <label for="body">Body: </label>
+                <textarea name="body">{{ body }}</textarea>
+            </li>
+        </ul>
+        <input type="submit" value="Submit Journal Entry">
+    </form>
+{% endblock %}
