@@ -7,7 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from user_images.models import ImageUploadForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
+from imager_profile.forms import DocumentForm
 
 
 def home_view(request):
@@ -43,6 +44,7 @@ def image_view(request):
 def add_image_view(request):
     # context = {'image': image}
     # return render(request, 'user_images/add_image.html', context=context)
+    form = ImageUploadForm()
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -50,7 +52,11 @@ def add_image_view(request):
             # m = ExampleModel.objects.get(pk=course_id)
             image.image = form.cleaned_data['image']
             image.save()
-            return HttpResponseRedirect(reverse('django_imager.imager_profile.views.image_view'))
+            return HttpResponseRedirect("user_images/add_image.html", {"form": form})
+
+    return render(request, "user_images/add_image.html", {"form": form})
+
+
 
 
 def thumb_view(request):
