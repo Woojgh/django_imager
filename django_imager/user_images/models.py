@@ -1,5 +1,6 @@
 """Model for our user images."""
 from django.db import models
+from django import forms
 from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -35,6 +36,16 @@ class Photo(models.Model):
         date_published: {}
         published: {}
         """.format(self.user, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
+
+
+class ImageUploadForm(forms.Form):
+    """Image upload form."""
+    image = forms.ImageField()
+
+
+class AddImage(models.Model):
+    image = models.ImageField(upload_to='uploaded_images', null=True)
+    # cache.set('image', image)
 
 
 class Item(models.Model):
