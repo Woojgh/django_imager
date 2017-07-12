@@ -10,6 +10,7 @@
 {% block create %}
     <h1>Add Image</h1>
     <form action="{% url 'add_image' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
         <p>
             <input id="id_image" type="file" class="" name="image">
         </p>
