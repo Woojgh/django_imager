@@ -48,11 +48,13 @@ def add_image_view(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            image = AddImage.objects.get()
+            import pdb; pdb.set_trace()
+            images = AddImage.objects.all()
             # m = ExampleModel.objects.get(pk=course_id)
-            image.image = form.cleaned_data['image']
-            image.save()
-            return HttpResponseRedirect("user_images/add_image.html", {"form": form})
+            images.image = form.cleaned_data['image']
+            for image in images:
+                image.save()
+            return HttpResponseRedirect("../user_images/add_image.html", {"form": form})
 
     return render(request, "user_images/add_image.html", {"form": form})
 
