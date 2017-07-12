@@ -29,10 +29,10 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
-    url(r'^media/$', image_view, name='media'),
+    url(r'^library/$', image_view, name='library'),
     url(r'^thumb/$', thumb_view, name='thumb'),
     url(r'^add_image/$', add_image_view, name='add_image'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(

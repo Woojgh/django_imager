@@ -22,9 +22,9 @@
 </ul>
     <p class="album-title">Photos:</p>
 <ul>
-{% for photos in photos %}
+{% for photo in photos %}
     <li>
-        <img src="{{ photos.image }}" />
+        <img src="{{ photo.image.url }}" />
     </li>
 {% endfor %}
 </ul>

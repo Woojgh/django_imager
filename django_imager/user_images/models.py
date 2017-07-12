@@ -38,24 +38,26 @@ class Photo(models.Model):
         """.format(self.user, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
 
 
-class ImageUploadForm(forms.Form):
+class ImageUploadForm(forms.ModelForm):
     """Image upload form."""
-    image = forms.ImageField()
+    class Meta:
+        model = Photo
+        exclude = ['user']
 
 
-class AddImage(models.Model):
-    image = models.ImageField(upload_to='uploaded_images', null=True)
+# class AddImage(models.Model):
+#     image = models.ImageField(upload_to='uploaded_images', null=True)
 
 
-class Item(models.Model):
-    image = ImageField(upload_to='thumbnails', null=True)
-    cache.set('image', image)
+# class Item(models.Model):
+#     image = ImageField(upload_to='thumbnails', null=True)
+#     # cache.set('image', image)
 
-    def __repr__(self):
-        """."""
-        return """
-        image: {}
-        """.format(self.image)
+#     def __repr__(self):
+#         """."""
+#         return """
+#         image: {}
+#         """.format(self.image)
 
 
 class Album(models.Model):
