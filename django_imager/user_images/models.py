@@ -82,3 +82,10 @@ class Album(models.Model):
         date_published: {}
         published: {}
         """.format(self.user, self.photo, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
+
+
+class AlbumUploadForm(forms.ModelForm):
+    """Image upload form."""
+    class Meta:
+        model = Album
+        exclude = ['user']

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django_imager',
     'registration',
     'user_images',
-
     'sorl.thumbnail',
 ]
 
@@ -108,7 +107,7 @@ DATABASES = {
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-#         'LOCATION': 'my_cache_table',
+#         'LOCATION': 'nicks_cache',
 #         'TIMEOUT': 60,
 #         'OPTIONS': {
 #             'MAX_ENTRIES': 1000

@@ -65,6 +65,19 @@ def add_image_view(request):
     return render(request, "user_images/add_image.html/", {"form": form})
 
 
+# def add_album_view(request):
+#     """View for adding an album to our image app."""
+#     form = AlbumUploadForm()
+#     if request.method == 'POST':
+#         album = Album()
+#         album.title = request.POST['title']
+#         album.description = request.POST['description']
+#         album.date_uploaded = request.POST['date_uploaded']
+#         album.date_modified = request.POST['date_modified']
+#         album.published = request.POST['published']
+#         album.photo = request.FILES['photo']
+#     return HttpResponseRedirect(reverse_lazy('profile'), {"form": form})
+
 
 
 def thumb_view(request):
