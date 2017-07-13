@@ -20,8 +20,7 @@ from django.views import View
 class home_view(View):
     """Home view callable, for the home page."""
     def get(self, request):
-        
-    return render(request, 'django_imager/home.html', context=context)
+        return HttpResponse('home')
 
 
 def account_view(request):

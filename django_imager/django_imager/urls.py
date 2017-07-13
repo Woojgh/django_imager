@@ -23,7 +23,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^$', home_view, name="home"),
+    url(r'^home/$', home_view.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^profile/', profile_view, name="profile"),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
