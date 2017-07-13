@@ -31,12 +31,12 @@ def logout_view(request):
 
 
 def album_view(request):
-    album_photos = Album.object.get()
-    context = {
-        "album_photos": album_photos,
-        }
     # import pdb; pdb.set_trace()
-    return render(request, 'user_images/album.html', context=context)
+    album = Album.objects.all()
+    context = {
+        "album": album
+        }
+    return render(request, 'user_images/album_view.html', context=context)
 
 
 def image_view(request):
@@ -50,11 +50,8 @@ def image_view(request):
 
 
 def add_image_view(request):
-    # context = {'image': image}
-    # return render(request, 'user_images/add_image.html', context=context)
     form = ImageUploadForm()
     if request.method == 'POST':
-        # import pdb; pdb.set_trace()
         photo = Photo()
         photo.title = request.POST['title']
         photo.description = request.POST['description']
@@ -78,13 +75,12 @@ def add_album_view(request):
         album.user = request.user
         album.image = request.FILES['image']
         album.save()
-        return HttpResponseRedirect(reverse_lazy('album'), {"form": form})
+        return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
 
-    return render(request, "user_images/album.html/", {"form": form})
+    return render(request, "user_images/add_album.html/", {"form": form})
 
 
 def thumb_view(request):
-    # import pdb; pdb.set_trace()
     items = Photo.objects.all()
     context = {
         "items": items,
