@@ -45,6 +45,7 @@ class ImageUploadForm(forms.Form):
 
 class AddImage(models.Model):
     image = models.ImageField(upload_to='uploaded_images', null=True)
+    # cache.set('image', image)
 
 
 class Item(models.Model):
