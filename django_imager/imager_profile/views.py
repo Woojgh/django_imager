@@ -30,6 +30,15 @@ def logout_view(request):
     return auth_views.logout(request)
 
 
+def album_view(request):
+    album_photos = Album.object.get()
+    context = {
+        "album_photos": album_photos,
+        }
+    # import pdb; pdb.set_trace()
+    return render(request, 'user_images/album.html', context=context)
+
+
 def image_view(request):
     photos = Photo.objects.all()
     albums = Album.objects.all()
@@ -37,7 +46,6 @@ def image_view(request):
         "photos": photos,
         "albums": albums,
         }
-    # import pdb; pdb.set_trace()
     return render(request, 'user_images/user_images.html', context=context)
 
 
@@ -54,7 +62,7 @@ def add_image_view(request):
         photo.user = request.user
         photo.image = request.FILES['image']
         photo.save()
-        return HttpResponseRedirect(reverse_lazy('profile'), {"form": form})
+        return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
 
     return render(request, "user_images/add_image.html/", {"form": form})
 
@@ -66,18 +74,17 @@ def add_album_view(request):
         album = Album()
         album.title = request.POST['title']
         album.description = request.POST['description']
-        album.date_uploaded = request.POST['date_uploaded']
-        album.date_modified = request.POST['date_modified']
         album.published = request.POST['published']
         album.user = request.user
-        album.photo = request.FILES['photo']
+        album.image = request.FILES['image']
         album.save()
-        return HttpResponseRedirect(reverse_lazy('profile'), {"form": form})
+        return HttpResponseRedirect(reverse_lazy('album'), {"form": form})
 
-    return render(request, "user_images/add_album.html/", {"form": form})
+    return render(request, "user_images/album.html/", {"form": form})
 
 
 def thumb_view(request):
+    # import pdb; pdb.set_trace()
     items = Photo.objects.all()
     context = {
         "items": items,

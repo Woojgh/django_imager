@@ -10,17 +10,16 @@
 {% endif %}
 {% endblock %}
 {% block create %}
-    <p class="album-title">Albums:</p>
-    <!-- <button><a href="{% url 'add_album' %}">Create New Album</a></button> -->
 <ul>
-    <li class="icon-album" >
-        <a href="/thumb">Thumbnail</a>
-    </li>
-{% for album in albums %}
-    <li class="icon-album" >
-        <a href="{{ album }}">{{ album.title }}</a>
-    </li>
+    {% for item in items %}
+    {% thumbnail item.image "100x100" crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
 {% endfor %}
+{% for photo in albums %}
+    <li class="icon-album" >
+        <a href="{{ album.url }}">{{ album.title }}</a>
+    </li>
 </ul>
     <p class="album-title">Photos:</p>
 <ul>
