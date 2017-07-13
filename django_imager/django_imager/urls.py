@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 # from django.http import HttpResponse
 # from django.template import loader
 from django.contrib import admin
-from imager_profile.views import home_view, add_image_view, profile_view, logout_view, image_view, thumb_view
+from imager_profile.views import home_view, add_image_view, profile_view, logout_view, image_view, thumb_view, add_album_view
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^library/$', image_view, name='library'),
     url(r'^thumb/$', thumb_view, name='thumb'),
     url(r'^add_image/$', add_image_view, name='add_image'),
+    url(r'^add_album/$', add_album_view, name='add_album'),
 ] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

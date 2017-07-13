@@ -4,7 +4,7 @@ from django.contrib.auth import logout
 from user_images.models import Photo, Album#, Item, AddImage
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
-from user_images.models import ImageUploadForm
+from user_images.models import ImageUploadForm, AlbumUploadForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
@@ -54,30 +54,27 @@ def add_image_view(request):
         photo.user = request.user
         photo.image = request.FILES['image']
         photo.save()
-        # if form.is_valid():
-            # images = AddImage.objects.all()
-            # m = ExampleModel.objects.get(pk=course_id)
-            # images.image = form.cleaned_data['image']
-            # for image in images:
-            #     image.save()
         return HttpResponseRedirect(reverse_lazy('profile'), {"form": form})
 
     return render(request, "user_images/add_image.html/", {"form": form})
 
 
-# def add_album_view(request):
-#     """View for adding an album to our image app."""
-#     form = AlbumUploadForm()
-#     if request.method == 'POST':
-#         album = Album()
-#         album.title = request.POST['title']
-#         album.description = request.POST['description']
-#         album.date_uploaded = request.POST['date_uploaded']
-#         album.date_modified = request.POST['date_modified']
-#         album.published = request.POST['published']
-#         album.photo = request.FILES['photo']
-#     return HttpResponseRedirect(reverse_lazy('profile'), {"form": form})
+def add_album_view(request):
+    """View for adding an album to our image app."""
+    form = AlbumUploadForm()
+    if request.method == 'POST':
+        album = Album()
+        album.title = request.POST['title']
+        album.description = request.POST['description']
+        album.date_uploaded = request.POST['date_uploaded']
+        album.date_modified = request.POST['date_modified']
+        album.published = request.POST['published']
+        album.user = request.user
+        album.photo = request.FILES['photo']
+        album.save()
+        return HttpResponseRedirect(reverse_lazy('profile'), {"form": form})
 
+    return render(request, "user_images/add_album.html/", {"form": form})
 
 
 def thumb_view(request):
