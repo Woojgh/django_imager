@@ -1,19 +1,26 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
-from user_images.models import Photo, Album#, Item, AddImage
+from user_images.models import Photo, Album
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
-from user_images.models import ImageUploadForm, AlbumUploadForm
-from django.shortcuts import render_to_response
+from imager_profile.forms import ImageUploadForm, AlbumUploadForm, EditImageForm, EditAlbumForm
 from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
 from imager_profile.forms import DocumentForm
+from django.views import View
 
 
-def home_view(request):
+# class MyView(View):
+#     def get(self, request):
+#         # <view logic>
+#         return HttpResponse('result')
+
+
+class home_view(View):
     """Home view callable, for the home page."""
-    context = {'food': 'steak'}
+    def get(self, request):
+        
     return render(request, 'django_imager/home.html', context=context)
 
 
@@ -31,12 +38,43 @@ def logout_view(request):
 
 
 def album_view(request):
-    # import pdb; pdb.set_trace()
     album = Album.objects.all()
     context = {
         "album": album
         }
     return render(request, 'user_images/album_view.html', context=context)
+
+
+class edit_album(View):
+    form_class = EditAlbumForm
+    initial = {'form': 'form'}
+    template_name = 'user_images/edit_album.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('/library/')
+
+        return render(request, self.template_name, {'form': form})
+
+
+# def edit_album(View):
+#     # import pdb; pdb.set_trace()
+#         form = EditAlbumForm(request.POST)
+#         album = Album()
+#         album.title = request.POST['title']
+#         album.description = request.POST['description']
+#         album.uploaded_images = request.FILES['uploaded_images']
+#         album.save()
+#         return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
+
+#     form = EditAlbumForm()
+#     return render(request, "user_images/edit_album.html", {"form": form})
 
 
 def image_view(request):
@@ -47,6 +85,19 @@ def image_view(request):
         "albums": albums,
         }
     return render(request, 'user_images/user_images.html', context=context)
+
+
+def edit_image(request):
+    form = EditImageForm()
+    if request.method == 'POST':
+        image = Photo()
+        image.title = request.POST['title']
+        image.description = request.POST['description']
+        image.image = request.FILES['image']
+        image.save()
+        return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
+
+    return render(request, "user_images/edit_image.html", {"form": form})
 
 
 def add_image_view(request):
@@ -77,7 +128,7 @@ def add_album_view(request):
         album.save()
         return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
 
-    return render(request, "user_images/add_album.html/", {"form": form})
+    return render(request, "user_images/add_album.html", {"form": form})
 
 
 def thumb_view(request):

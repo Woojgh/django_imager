@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 # from django.http import HttpResponse
 # from django.template import loader
 from django.contrib import admin
-from imager_profile.views import album_view, home_view, add_image_view, profile_view, logout_view, image_view, thumb_view, add_album_view
+from imager_profile.views import album_view, home_view, add_image_view, profile_view, logout_view, image_view, thumb_view, add_album_view, edit_image, edit_album
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^thumb/$', thumb_view, name='thumb'),
     url(r'^add_image/$', add_image_view, name='add_image'),
     url(r'^add_album/$', add_album_view, name='add_album'),
+    url(r'^edit_image/$', edit_image, name='edit_image'),
+    url(r'^edit_album/$', edit_album.as_view()),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

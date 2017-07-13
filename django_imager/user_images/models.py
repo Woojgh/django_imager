@@ -37,13 +37,6 @@ class Photo(models.Model):
         """.format(self.user, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
 
 
-class ImageUploadForm(forms.ModelForm):
-    """Image upload form."""
-    class Meta:
-        model = Photo
-        exclude = ['user']
-
-
 class Album(models.Model):
     user = models.ForeignKey(User)
     uploaded_images = models.ManyToManyField(Photo)
@@ -68,10 +61,3 @@ class Album(models.Model):
         date_published: {}
         published: {}
         """.format(self.user, self.uploaded_images, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
-
-
-class AlbumUploadForm(forms.ModelForm):
-    """Image upload form."""
-    class Meta:
-        model = Album
-        exclude = ['user']
