@@ -9,6 +9,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
 from imager_profile.forms import DocumentForm
 from django.views import View
+from django.views.generic.edit import UpdateView
 
 
 class home_view(View):
@@ -70,7 +71,16 @@ class library_view(View):
         return render(request, 'user_images/user_images.html', context=context)
 
 
-class edit_image(View):
+# class edit_image(UpdateView):
+#     model = Photo
+#     fields = ['title', 'description']
+#     template_name_suffix = '_update_form'
+
+
+class edit_image(UpdateView):
+    model = Photo
+    fields = ['title', 'description']
+    template_name_suffix = '_update_form'
     form_class = EditImageForm
     initial = {'form': 'form'}
     template_name = 'user_images/edit_image.html'
