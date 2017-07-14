@@ -19,7 +19,7 @@ class EditImageForm(forms.ModelForm):
 
     class Meta:
         model = Photo
-        exclude = ['date_uploaded', 'date_published', 'published']
+        exclude = ['date_uploaded', 'date_published', 'published', 'uploaded_images', 'image']
 
 
 class AlbumUploadForm(forms.ModelForm):

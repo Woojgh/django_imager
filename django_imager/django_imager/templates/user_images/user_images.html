@@ -25,6 +25,8 @@
     <p class="album-title">Photos:</p>
 <ul>
 {% for photo in photos %}
+    <p>Title: {{ photo.title }}</p>
+    <p>Description: {{ photo.description }}</p>
     <li>
         <a href="{{ photo.image.url }}"><img src="{{ photo.image.url }}" /></a>
         <a href="/edit_image">Edit Image</a>

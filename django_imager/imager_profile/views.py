@@ -71,17 +71,21 @@ class library_view(View):
 
 
 class edit_image(View):
-    def post(request):
-        form = EditImageForm()
-        if request.method == 'POST':
-            image = Photo()
-            image.title = request.POST['title']
-            image.description = request.POST['description']
-            image.image = request.FILES['image']
-            image.save()
-            return HttpResponseRedirect(reverse_lazy('library_view'), {"form": form})
+    form_class = EditImageForm
+    initial = {'form': 'form'}
+    template_name = 'user_images/edit_image.html'
 
-        return render(request, "user_images/edit_image.html", {"form": form})
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('/library/')
+
+        return render(request, self.template_name, {'form': form})
 
 
 def add_image_view(request):
