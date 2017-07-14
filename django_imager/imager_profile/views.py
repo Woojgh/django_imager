@@ -71,13 +71,8 @@ class library_view(View):
         return render(request, 'user_images/user_images.html', context=context)
 
 
-# class edit_image(UpdateView):
-#     model = Photo
-#     fields = ['title', 'description']
-#     template_name_suffix = '_update_form'
-
-
-class edit_image(UpdateView):
+class edit_image(View):
+    # import pdb; pdb.set_trace()
     model = Photo
     fields = ['title', 'description']
     template_name_suffix = '_update_form'
@@ -92,8 +87,7 @@ class edit_image(UpdateView):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('/library/')
+            return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
 
         return render(request, self.template_name, {'form': form})
 

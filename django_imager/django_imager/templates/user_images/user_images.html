@@ -29,7 +29,7 @@
     <p>Description: {{ photo.description }}</p>
     <li>
         <a href="{{ photo.image.url }}"><img src="{{ photo.image.url }}" /></a>
-        <a href="/edit_image">Edit Image</a>
+        <a href="/edit_image/{{ photo.id }}">Edit Image</a>
 
     </li>
 {% endfor %}
