@@ -60,17 +60,17 @@ class edit_album(View):
 
 
 class library_view(View):
-    def get(request):
+    def get(self, request):
         photos = Photo.objects.all()
         albums = Album.objects.all()
         context = {
             "photos": photos,
             "albums": albums,
             }
-        return render(request, 'user_images/user_images.html')
+        return render(request, 'user_images/user_images.html', context=context)
 
 
-class edit_images(View):
+class edit_image(View):
     def post(request):
         form = EditImageForm()
         if request.method == 'POST':
@@ -79,7 +79,7 @@ class edit_images(View):
             image.description = request.POST['description']
             image.image = request.FILES['image']
             image.save()
-            return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
+            return HttpResponseRedirect(reverse_lazy('library_view'), {"form": form})
 
         return render(request, "user_images/edit_image.html", {"form": form})
 
