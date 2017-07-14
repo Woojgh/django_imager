@@ -11,37 +11,34 @@ from imager_profile.forms import DocumentForm
 from django.views import View
 
 
-# class MyView(View):
-#     def get(self, request):
-#         # <view logic>
-#         return HttpResponse('result')
-
-
 class home_view(View):
     """Home view callable, for the home page."""
+    def get(seldf, request):
+        return render(request, 'django_imager/home.html')
+
+
+# def account_view(request):
+#     return render(request, 'django_imager/account.html')
+
+
+class profile_view(View):
     def get(self, request):
-        return HttpResponse('home')
+        return render(request, 'django_imager/profile.html')
 
 
-def account_view(request):
-    return render(request, 'django_imager/account.html')
+class logout_view(View):
+    def get(self, request):
+        # message user or whatever
+        return auth_views.logout(request)
 
 
-def profile_view(request):
-    return render(request, 'django_imager/profile.html')
-
-
-def logout_view(request):
-    # message user or whatever
-    return auth_views.logout(request)
-
-
-def album_view(request):
-    album = Album.objects.all()
-    context = {
-        "album": album
-        }
-    return render(request, 'user_images/album_view.html', context=context)
+class album_view(View):
+    def get(self, request):
+        album = Album.objects.all()
+        context = {
+            "album": album
+            }
+        return render(request, 'user_images/album_view.html', context=context)
 
 
 class edit_album(View):
@@ -62,41 +59,29 @@ class edit_album(View):
         return render(request, self.template_name, {'form': form})
 
 
-# def edit_album(View):
-#     # import pdb; pdb.set_trace()
-#         form = EditAlbumForm(request.POST)
-#         album = Album()
-#         album.title = request.POST['title']
-#         album.description = request.POST['description']
-#         album.uploaded_images = request.FILES['uploaded_images']
-#         album.save()
-#         return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
-
-#     form = EditAlbumForm()
-#     return render(request, "user_images/edit_album.html", {"form": form})
+class library_view(View):
+    def get(request):
+        photos = Photo.objects.all()
+        albums = Album.objects.all()
+        context = {
+            "photos": photos,
+            "albums": albums,
+            }
+        return render(request, 'user_images/user_images.html')
 
 
-def image_view(request):
-    photos = Photo.objects.all()
-    albums = Album.objects.all()
-    context = {
-        "photos": photos,
-        "albums": albums,
-        }
-    return render(request, 'user_images/user_images.html', context=context)
+class edit_images(View):
+    def post(request):
+        form = EditImageForm()
+        if request.method == 'POST':
+            image = Photo()
+            image.title = request.POST['title']
+            image.description = request.POST['description']
+            image.image = request.FILES['image']
+            image.save()
+            return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
 
-
-def edit_image(request):
-    form = EditImageForm()
-    if request.method == 'POST':
-        image = Photo()
-        image.title = request.POST['title']
-        image.description = request.POST['description']
-        image.image = request.FILES['image']
-        image.save()
-        return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
-
-    return render(request, "user_images/edit_image.html", {"form": form})
+        return render(request, "user_images/edit_image.html", {"form": form})
 
 
 def add_image_view(request):
