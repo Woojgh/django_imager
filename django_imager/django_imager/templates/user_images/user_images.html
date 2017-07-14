@@ -3,27 +3,34 @@
 {% block body %}
 {% if user.is_authenticated %}
     <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
+    <li class="tab"><a href="/library"> Library</a></li>
 {% else %}
     <li class="tab"><a href="/login"> Login</a></li>
 {% endif %}
 {% endblock %}
 {% block create %}
-    <p class="album-title">Albums:</p>
 <ul>
+    <li class="tab"><a href="/add_album"> Add Album</a></li>
+    <li class="tab"><a href="/add_image"> Add Image</a></li>
     <li class="icon-album" >
         <a href="/thumb">Thumbnail</a>
     </li>
-{% for albums in albums %}
+{% for album in albums %}
     <li class="icon-album" >
-        <a href="{{ albums.title }}">{{ albums.title }}</a>
+        <a href="/album">{{ album.title }}</a>
+        <a href="/edit_album"> Edit Album</a>
     </li>
 {% endfor %}
 </ul>
     <p class="album-title">Photos:</p>
 <ul>
-{% for photos in photos %}
+{% for photo in photos %}
+    <p>Title: {{ photo.title }}</p>
+    <p>Description: {{ photo.description }}</p>
     <li>
-        <img src="{{ photos.image }}" />
+        <a href="{{ photo.image.url }}"><img src="{{ photo.image.url }}" /></a>
+        <a href="/edit_image/{{ photo.id }}">Edit Image</a>
+
     </li>
 {% endfor %}
 </ul>
