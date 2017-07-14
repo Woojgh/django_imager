@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
-from user_images.models import Photo, Album, User
+from user_images.models import Photo, Album
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
 from imager_profile.forms import ImageUploadForm, AlbumUploadForm, EditImageForm, EditAlbumForm
@@ -85,10 +85,12 @@ class edit_image(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST, request.FILES)
-        form.instance.user = User.objects.get(user=self.request.user)
+        form = self.form_class(request.POST)
+        user = request.user
+        data = request.POST
         if form.is_valid():
-            return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
+            form.save()
+            return HttpResponseRedirect(self.get_success_url)
 
         return render(request, self.template_name, {'form': form})
 
