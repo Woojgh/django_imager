@@ -13,7 +13,7 @@ from django.views import View
 
 class home_view(View):
     """Home view callable, for the home page."""
-    def get(seldf, request):
+    def get(self, request):
         return render(request, 'django_imager/home.html')
 
 

@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^thumb/$', thumb_view, name='thumb'),
     url(r'^add_image/$', add_image_view, name='add_image'),
     url(r'^add_album/$', add_album_view, name='add_album'),
-    url(r'^edit_image/$', edit_image, name='edit_image'),
+    url(r'^edit_image/$', edit_image.as_view()),
     url(r'^edit_album/$', edit_album.as_view()),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
