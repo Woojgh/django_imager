@@ -3,7 +3,6 @@ from django.db import models
 from django import forms
 from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
-from django.core.cache import cache
 
 
 PUBLISHED_CHOICES = [
