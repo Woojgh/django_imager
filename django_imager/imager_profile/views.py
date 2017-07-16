@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
 from user_images.models import Photo, Album, User
-from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
 from imager_profile.forms import ImageUploadForm, AlbumUploadForm, EditImageForm, EditAlbumForm
 from django.template import RequestContext
