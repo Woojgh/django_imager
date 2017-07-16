@@ -25,7 +25,6 @@ class Photo(models.Model):
 
     def __repr__(self):
         """."""
-        # return "<Photo: {}>".format(self.title)
         return """
         user: {}
         image: {}
@@ -38,30 +37,10 @@ class Photo(models.Model):
         """.format(self.user, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
 
 
-class ImageUploadForm(forms.Form):
-    """Image upload form."""
-    image = forms.ImageField()
-
-
-class AddImage(models.Model):
-    image = models.ImageField(upload_to='uploaded_images', null=True)
-    # cache.set('image', image)
-
-
-class Item(models.Model):
-    image = ImageField(upload_to='thumbnails', null=True)
-    cache.set('image', image)
-
-    def __repr__(self):
-        """."""
-        return """
-        image: {}
-        """.format(self.image)
-
-
 class Album(models.Model):
     user = models.ForeignKey(User)
-    photo = models.ManyToManyField(Photo)
+    uploaded_images = models.ManyToManyField(Photo)
+    image = models.ImageField(Photo, null=True)
     title = models.CharField(max_length=140, blank=False)
     description = models.CharField(max_length=200, blank=True)
     date_uploaded = models.DateField(auto_now=True)
@@ -73,11 +52,12 @@ class Album(models.Model):
         """."""
         return """
         user: {}
-        photo: {}
+        uploaded_images:{}
+        image: {}
         title: {}
         description: {}
         date_uploaded: {}
         date_modified: {}
         date_published: {}
         published: {}
-        """.format(self.user, self.photo, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)
+        """.format(self.user, self.uploaded_images, self.image, self.title, self.description, self.date_uploaded, self.date_modified, self.date_published, self.published)

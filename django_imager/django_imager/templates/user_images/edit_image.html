@@ -8,10 +8,10 @@
 {% endif %}
 {% endblock %}
 {% block create %}
-    <h1>Add Image</h1>
+    <h1>Edit {{ photo.title }}</h1>
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Update" />
     </form>
 {% endblock %}
