@@ -25,7 +25,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', home_view.as_view()),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^profile/', profile_view.as_view()),
+    url(r'^profile/', profile_view.as_view(), name='profile'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
     url(r'^logout/$', logout_view.as_view()),

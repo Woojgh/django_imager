@@ -130,5 +130,5 @@ def thumb_view(request):
     items = Photo.objects.all()
     context = {
         "items": items,
-        }
+    }
     return render(request, 'user_images/thumb.html', context=context)
