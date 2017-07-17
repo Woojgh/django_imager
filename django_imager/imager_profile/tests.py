@@ -7,6 +7,7 @@ from faker import Faker
 import factory
 import os
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -45,3 +46,4 @@ class ProfilePageTests(TestCase):
     #             'username': self.user.username, 'password': 'moomoomoo'
     #     })
     #     self.assertTrue(resp.url == reverse_lazy('imager_profile:profile'))
+
