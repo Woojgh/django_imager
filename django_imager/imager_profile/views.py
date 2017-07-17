@@ -121,10 +121,18 @@ class add_image_view(View):
         return render(request, self.template_name, {'form': form})
 
 
-def add_album_view(request):
-    """View for adding an album to our image app."""
-    form = AlbumUploadForm()
-    if request.method == 'POST':
+class add_album_view(View):
+
+    form_class = ImageUploadForm
+    initial = {'form': 'form'}
+    template_name = 'user_images/add_image.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = AlbumUploadForm()
         album = Album()
         album.title = request.POST['title']
         album.description = request.POST['description']
@@ -132,14 +140,17 @@ def add_album_view(request):
         album.user = request.user
         album.image = request.FILES['image']
         album.save()
-        return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
 
-    return render(request, "user_images/add_album.html", {"form": form})
+        return render(request, self.template_name, {'form': form})
 
 
-def thumb_view(request):
-    items = Photo.objects.all()
-    context = {
-        "items": items,
-    }
-    return render(request, 'user_images/thumb.html', context=context)
+class thumb_view(View):
+    def get(self, request):
+        items = Album.objects.all()
+        context = {
+            "items": items
+            }
+        return render(request, 'user_images/thumb.html', context=context)
