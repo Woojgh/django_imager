@@ -95,9 +95,18 @@ class edit_image(View):
         return render(request, self.template_name, {'form': form})
 
 
-def add_image_view(request):
-    form = ImageUploadForm()
-    if request.method == 'POST':
+class add_image_view(View):
+
+    form_class = ImageUploadForm
+    initial = {'form': 'form'}
+    template_name = 'user_images/add_image.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = ImageUploadForm()
         photo = Photo()
         photo.title = request.POST['title']
         photo.description = request.POST['description']
@@ -105,9 +114,11 @@ def add_image_view(request):
         photo.user = request.user
         photo.image = request.FILES['image']
         photo.save()
-        return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse_lazy('library'), {"form": form})
 
-    return render(request, "user_images/add_image.html/", {"form": form})
+        return render(request, self.template_name, {'form': form})
 
 
 def add_album_view(request):
