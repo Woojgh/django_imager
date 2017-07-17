@@ -32,7 +32,7 @@ class ProfilePageTests(TestCase):
     def test_users_profile_info_on_profile_page(self):
         self.client.force_login(self.user)
         resp = self.client.get(reverse_lazy('profile'))
-        html = BeautifulSoup(resp.content, html.parser)
+        html = BeautifulSoup(resp.content, "html.parser")
         self.assertTrue(self.user.username.encode('utf8') in resp.content)
         self.assertTrue(b'<li>Email:</li>' not in html)
 

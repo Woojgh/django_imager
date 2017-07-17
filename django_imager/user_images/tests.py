@@ -17,7 +17,7 @@ class PhotoFactory(factory.django.DjangoModelFactory):
     title = factory.Sequence(lambda n: "photo{}".format(n))
     image = SimpleUploadedFile(
         name='somephoto.jpg',
-        path=open(os.path.join('media', 'uploaded_images', 'somephoto.jpg'), 'rb').read(),
+        path=open(os.path.join('media', 'title1.jpg'), 'rb').read(),
         content_type='image/jpeg'
     )
 
