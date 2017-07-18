@@ -1,0 +1,17 @@
+{% extends "django_imager/base.html" %}
+{% block body %}
+{% if user.is_authenticated %}
+    <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
+    <li class="tab"><a href="/library">library</a></li>
+{% else %}
+    <li class="tab"><a href="/login" class="icon-home"> Login</a></li>
+{% endif %}
+{% endblock %}
+{% block create %}
+    <h1>Edit Album</h1>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% csrf_token %}
+<html lang="en">
+  <head>
+    <!-- <link rel="stylesheet" href="user_images/jquery.fancybox.min.css" type="text/css" media="screen" /> -->
+    <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/modules.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/django_imager/style/layouts.css' %}">
+  </head>
+  <body>
+    <header class="clearfix">
+    <section class="something">
+    <ul>
+    {% if user.is_authenticated %}
+      <li class="icon-admin"><a href="/admin"> Admin</a></li>
+      <li class="icon-register"><a href="/logout"> Logout</a></li>
+    {% else %}
+      <li class="icon-register"><a href="/accounts/register"> Register</a></li>
+    {% endif %}
+    </ul>
+    </section>
+    <section>
+      <div class="title-pic">
+        <!-- <img src="media/title.jpg" /> -->
+      </div>
+      <div class="title">JourNull EntTrees</div>
+    </section>
+    <section>
+      <nav class="top-nav">
+      <ul>
+        <li class="tab" data-content="entries"><a href="/" class="icon-home"> Home</a></li>
+        {% block body %}
+        {% endblock %}
+      </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- <img src="{% static '/django_imager/Death_star_home.jpg' %}"/> -->
+      <section class="new-entry">
+        {% block create %}
+        {% endblock %}
+      </section>
+      <section id="content" class="tab-content">
+      </section>
+    </main>
+    <footer>
+    </footer>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="user_images/jquery.fancybox.min.js"></script> -->
+    <!-- <script type="text/javascript" src="/fancybox/jquery.easing-1.4.pack.js"></script>
+    <script type="text/javascript" src="/fancybox/jquery.mousewheel-3.0.4.pack.js"></script> -->
+    <!-- <script src="lightBox.js"></script> -->
+  </body>
+</html>

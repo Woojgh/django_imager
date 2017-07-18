@@ -1,0 +1,297 @@
+.site-header{
+  border-radius: 10px;
+  background: #211702;
+  color: cornsilk;
+  text-align: center;
+}
+
+#aboutpage {
+  background-color: #211702;
+  border-radius: 10px;
+  font-size: 3vw;
+  padding: 2vw 1vw 1vw 1vw;
+}
+
+.eachperson p {
+  list-style: none;
+}
+
+#aboutpage ul li {
+  text-decoration: none;
+  list-style: none;
+}
+
+.album-title {
+   color: #211702;
+}
+
+.entry-list {
+  text-decoration: none;
+  font-size: 2vw;
+  display:block;
+  margin-left: 2vw;
+  -moz-column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 20px;
+  column-count: 2;
+  column-gap: 20px;
+}
+
+.entry-title {
+  font-size: 2vw;
+  float:left;
+  margin-left: 2vw;
+}
+
+.entry-body {
+  font-size: 1.5vw;
+  float:left;
+  width:100%;
+}
+
+.new-entry {
+
+  font-size: 3.5vw;
+  float:left;
+  width:100%;
+}
+
+.body-each-p {
+  /*border-radius: 5px;
+  border:3.5px solid #211702;*/
+  color: #211702;
+}
+
+.new-entry ul li {
+  color: #211702;
+  list-style:none;
+}
+
+#heat-cont {
+  background-color: #211702;
+
+}
+#heat-image {
+  background-color: cornsilk;
+}
+
+.sequence-entry {
+  font-size: 5vw;
+  background-color: #211702;
+  border-radius: 10px;
+}
+
+.tab-content {
+  background-color: #211702;
+  border-radius: 5px;
+  /*padding:9px 20px;*/
+  text-align: center;
+
+}
+
+#contact ul {
+  text-align: center;
+}
+
+#contact ul li {
+  padding: 0vw 8vw;
+  text-align: center;
+  display: inline;
+}
+
+#contact {
+
+  height:10vw;
+  width:197vw;
+  background-color: #211702;
+  border-radius: 10px;
+  font-size: 2.5vw;
+  padding: 2vw 1vw 1vw 1vw;
+}
+
+.something ul {
+  display:inline;
+}
+
+.icon-menu {
+  font-size: 3em;
+  float: right;
+  color:#211702;
+}
+
+.icon-register {
+  float:right;
+  list-style: none;
+  }
+
+.icon-register a {
+  color:#211702;
+  text-decoration: none;
+}
+
+.icon-album a {
+  text-decoration: none;
+  color:#211702;
+  margin-right: .4em;
+  font-size: 2vw;
+  padding: .5em .2em;
+}
+
+.icon-admin {
+  float: left;
+  list-style: none;
+  }
+
+.icon-admin a {
+  color:#211702;
+  text-decoration: none;
+}
+
+.title {
+  color:#211702;
+  font-size: 64px;
+  text-align:center;
+}
+
+.homestatement {
+  background-color: #211702;
+  border-radius: 10px;
+  font-size: 3vw;
+  padding: 1vw 1vw;
+}
+
+.login-view {
+  border-radius: 5px;
+  border:5px solid #211702;
+  color: #211702;
+  height:40vw;
+  width:50vw;
+  margin: auto;
+  margin-bottom: 70px;
+}
+.nav {
+  padding: 0.1em;
+}
+
+.main-nav ul {
+  list-style: none;
+  /*padding: 0;*/
+  /*clear: both;*/
+}
+
+.main-nav ul li {
+    display: inline;
+    font-size: 1vw;
+}
+
+.top-nav ul {
+  /*padding: 0;*/
+  /*clear: both;*/
+}
+
+.top-nav ul li {
+  text-decoration: none;
+  list-style: none;
+  display: inline;
+  font-size: 3vw;
+}
+
+.nav:hover ul {
+
+}
+
+.top-nav {
+  text-align:center;
+  border-radius: 5px;
+  border:2px solid #211702;
+  border-top: none;
+  margin: 0vw 35vw;
+}
+
+.main-nav {
+  text-align:center;
+  border-radius: 5px;
+  border:2px solid #211702;
+  border-top: none;
+  margin: 0vw 35vw;
+}
+
+.top-nav li {
+  text-decoration: none;
+  color:#211702;
+  margin-right: .4em;
+  font-size: 4vw;
+  padding: .5em .2em;
+}
+
+.main-nav li {
+  color:#211702;
+  margin-right: .4em;
+  font-size: 1vw;
+  padding: .5em .2em;
+}
+
+
+#home-pic {
+  padding-top: 2vw;
+  background-color: #211702;
+  border-radius: 10px;
+}
+
+#home-pic img {
+  height:40vw;
+  width:70vw;
+}
+
+.top-nav li a {
+  text-decoration: none;
+  color:#211702;
+}
+
+.top-nav ul li:hover a {
+    color:#001259;
+    -webkit-text-stroke-width: .3px;
+    -webkit-text-stroke-color: #211702;
+  }
+
+.main-nav li a {
+  text-decoration: none;
+  color:#211702;
+}
+
+.main-nav ul li:hover a {
+    color:#001259;
+    -webkit-text-stroke-width: .3px;
+    -webkit-text-stroke-color: #211702;
+  }
+
+#entry-export label {
+  font-size: .8em;
+  font-style: italic;
+  color: #ccc;
+}
+
+.seq-list li {
+  display:inline;
+}
+
+.seq-list li a {
+  padding-bottom: 1vw;
+  display: inline;
+  text-decoration: none;
+  color: cornsilk;
+}
+
+#btn {
+  padding: 70px, 70px;
+}
+
+
+#seq {
+  display: inline;
+}
+
+#seqid {
+  margin-left: 1.2vw;
+}

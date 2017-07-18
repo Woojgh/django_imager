@@ -1,0 +1,22 @@
+{% extends "django_imager/base.html" %}
+{% block body %}
+{% if user.is_authenticated %}
+    <li class="tab"><a href="/library">Library</a></li>
+{% else %}
+    <li class="tab"><a href="/login"> Login</a></li>
+{% endif %}
+{% endblock %}
+{% block create %}
+    <p class='title'>Welcome {{ user.username }}</p>
+    <ul>
+      <li>Location: {{ user.location }}</li>
+      <li>First Name: {{ user.first_name }}</li>
+      <li>Last Name: {{ user.last_name }}</li>
+      <li>Email: {{ user.email }}</li>
+      <li>Date Joined: {{ user.date_joined }}</li>
+      <li>Camera: {{ user.camera }}</li>
+      <li>Active: {{ user.is_active }}</li>
+      <li>Birth Date: {{ user.birth_date }}</li>
+      <li>Images: {{user.images}}</li>
+    </ul>
+{% endblock %}

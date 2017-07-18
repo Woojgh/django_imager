@@ -1,0 +1,25 @@
+{% extends "django_imager/base.html" %}
+{% load thumbnail %}
+{% block body %}
+{% if user.is_authenticated %}
+    <li class="tab" data-content="entries"><a href="/profile" class="icon-home"> Profile</a></li>
+    <li class="tab"><a href="/library"> Library</a></li>
+{% else %}
+    <li class="tab"><a href="/login"> Login</a></li>
+{% endif %}
+{% endblock %}
+{% block create %}
+<ul>
+    {% for item in items %}
+    {% thumbnail item.image "100x100" crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+{% endfor %}
+{% for image in album %}
+    <li class="icon-album" >
+        <a href="{{ image.image.url }}"><img src="{{ image.image.url }}"></a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
+

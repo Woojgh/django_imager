@@ -1,0 +1,35 @@
+body {
+  /*font-size: 3vw;*/
+  background-color:cornsilk;
+  color: #211702;
+}
+
+h1 {
+  font-size: 64px;
+  text-align:center;
+}
+
+h2 {
+  font-size: 6vw;
+}
+
+h3 {
+  padding:0vw 4vw;
+}
+
+main {
+  color: #211702;
+  text-align: center;
+}
+
+article {
+  background-color: #211702;
+}
+
+form p {
+  color: #211702;
+}
+
+form ul {
+  font-size: 1vw;
+}
