@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
 from imager_profile.forms import DocumentForm
 from django.views import View
-from django.views.generic.edit import UpdateView
+from django.views.generic import UpdateView, ListView
 
 
 class home_view(View):
@@ -59,7 +59,7 @@ class edit_album(View):
         return render(request, self.template_name, {'form': form})
 
 
-class library_view(View):
+class library_view(ListView):
     def get(self, request):
         photos = Photo.objects.all()
         albums = Album.objects.all()
@@ -70,7 +70,7 @@ class library_view(View):
         return render(request, 'user_images/user_images.html', context=context)
 
 
-class edit_image(View):
+class edit_image(UpdateView):
     # import pdb; pdb.set_trace()
     model = Photo
     fields = ['title', 'description']
@@ -88,6 +88,7 @@ class edit_image(View):
         request.POST = dict(request.POST)
         request.POST['user'] = request.user.id
         form = EditImageForm(request.POST, instance=photo)
+        # import pdb; pdb.set_trace()
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse_lazy('library'))
