@@ -4,6 +4,8 @@ from django import forms
 from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
 
+from taggit.managers import TaggableManager
+
 
 PUBLISHED_CHOICES = [
     ("public", "Public"),
@@ -21,6 +23,7 @@ class Photo(models.Model):
     date_modified = models.DateField(auto_now=True)
     date_published = models.DateField(auto_now_add=True)
     published = models.CharField(choices=PUBLISHED_CHOICES, default='public', max_length=10)
+    tags = TaggableManager()
 
     def __repr__(self):
         """."""
@@ -46,6 +49,7 @@ class Album(models.Model):
     date_modified = models.DateField(auto_now=True)
     date_published = models.DateField(auto_now_add=True)
     published = models.CharField(choices=PUBLISHED_CHOICES, default='public', max_length=10 )
+    tags = TaggableManager()
 
     def __repr__(self):
         """."""

@@ -30,6 +30,8 @@ THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TAGGIT_CASE_INSENSITIVE = True
+
 # ACCOUNT_LOGOUT_ON_GET = True
 
 # Application definition
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'registration',
     'user_images',
     'sorl.thumbnail',
+    'taggit'
 ]
 
 MIDDLEWARE = [
