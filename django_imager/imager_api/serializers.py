@@ -10,7 +10,7 @@ class ApiSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Api.objects.all())
 
     class Meta:
         model = User
