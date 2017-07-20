@@ -3,6 +3,7 @@ from imager_api.serializers import ApiSerializer, UserSerializer
 from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework import permissions
+from imager_api.permissions import IsOwnerOrReadOnly
 
 
 class ApiList(generics.ListCreateAPIView):
@@ -18,6 +19,7 @@ class ApiDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Api.objects.all()
     serializer_class = ApiSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
 
 class UserList(generics.ListAPIView):
