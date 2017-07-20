@@ -53,6 +53,8 @@ class edit_album(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
+            form.save(commit=False)
+            form.save_m2m()
             # <process form cleaned data>
             return HttpResponseRedirect('/library/')
 
@@ -90,7 +92,8 @@ class edit_image(UpdateView):
         form = EditImageForm(request.POST, instance=photo)
         # import pdb; pdb.set_trace()
         if form.is_valid():
-            form.save()
+            form.save(commit=False)
+            form.save_m2m()
             return HttpResponseRedirect(reverse_lazy('library'))
 
         return render(request, self.template_name, {'form': form})

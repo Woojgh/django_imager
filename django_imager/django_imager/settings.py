@@ -30,6 +30,8 @@ THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TAGGIT_CASE_INSENSITIVE = True
+
 # ACCOUNT_LOGOUT_ON_GET = True
 
 # Application definition
@@ -46,6 +48,9 @@ INSTALLED_APPS = [
     'registration',
     'user_images',
     'sorl.thumbnail',
+    'taggit',
+    'rest_framework',
+    'imager_api',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +167,7 @@ LOGIN_REDIRECT_URL = '/library'
 LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10
+}
