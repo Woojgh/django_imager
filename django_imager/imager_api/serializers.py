@@ -11,7 +11,8 @@ class ApiSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Api.objects.all())
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'snippets')
+        fields = ('id', 'username', 'snippets', 'owner')
