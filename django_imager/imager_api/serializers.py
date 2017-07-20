@@ -3,16 +3,19 @@ from imager_api.models import Api, LANGUAGE_CHOICES, STYLE_CHOICES
 from django.contrib.auth.models import User
 
 
-class ApiSerializer(serializers.ModelSerializer):
+class ApiSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    highlight = serializers.HyperlinkedIdentityField(view_name='imager_api-highlight', format='html')
+
     class Meta:
         model = Api
-        fields = ('id', 'title', 'code', 'linenos', 'language', 'style')
+        fields = ('url', 'id', 'highlight', 'owner',
+                  'title', 'code', 'linenos', 'language', 'style')
 
 
-class UserSerializer(serializers.ModelSerializer):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Api.objects.all())
-    owner = serializers.ReadOnlyField(source='owner.username')
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    imager_api = serializers.HyperlinkedRelatedField(many=True, view_name='imager_api-detail', read_only=True)
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'snippets', 'owner')
+        fields = ('url', 'id', 'username', 'imager_api')

@@ -167,3 +167,7 @@ LOGIN_REDIRECT_URL = '/library'
 LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10
+}
