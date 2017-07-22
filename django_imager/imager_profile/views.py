@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 from imager_profile.forms import DocumentForm
 from django.views import View
 from django.views.generic import UpdateView, ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class home_view(View):
@@ -63,12 +64,14 @@ class edit_album(View):
 
 class library_view(ListView):
     def get(self, request):
-        photos = Photo.objects.all()
+        pages = Paginator(Photo.objects.all(), 4)
+        photos = pages.page(1)
         albums = Album.objects.all()
         context = {
             "photos": photos,
             "albums": albums,
             }
+
         return render(request, 'user_images/user_images.html', context=context)
 
 
