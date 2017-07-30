@@ -63,7 +63,7 @@ class edit_album(View):
 
 
 class library_view(ListView):
-    def get(self, request):
+    def get(self, request, page_num=1):
         pages = Paginator(Photo.objects.all(), 4)
         photos = pages.page(1)
         albums = Album.objects.all()

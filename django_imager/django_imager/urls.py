@@ -8,14 +8,14 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^$', home_view.as_view()),
+    url(r'^$', home_view.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^profile/', profile_view.as_view(), name='profile'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
-    url(r'^logout/$', logout_view.as_view()),
+    url(r'^logout/$', logout_view.as_view(), name='logout'),
     url(r'^library/$', library_view.as_view(), name='library'),
-    url(r'^album/$', album_view.as_view()),
+    url(r'^album/$', album_view.as_view(), name='album'),
     url(r'^thumb/$', thumb_view, name='thumb'),
     url(r'^add_image/$', add_image_view.as_view(), name='add_image'),
     url(r'^add_album/$', add_album_view, name='add_album'),
