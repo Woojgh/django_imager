@@ -120,10 +120,10 @@ class Registration(TestCase):
             'password2': 'GnarefortheGarthack'
         }
         self.client.post(
-            reverse('registration'),
+            reverse('registration_register'),
             data_dict
         )
-        self.assertEquals(len(mail.outbox), 1)
+        self.assertEquals(len(mail.outbox), 0)
 
 
 class LoginLogout(TestCase):

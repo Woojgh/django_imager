@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^add_image/$', add_image_view.as_view(), name='add_image'),
     url(r'^add_album/$', add_album_view, name='add_album'),
     url(r'^edit_image/(?P<id>\d+)/$', edit_image.as_view(), name='edit_image'),
-    url(r'^edit_album/$', edit_album.as_view()),
+    url(r'^edit_album/(?P<id>\d+)/$', edit_album.as_view(), name='edit_album'),
     url(r'^', include('imager_api.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
