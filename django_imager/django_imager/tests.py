@@ -44,7 +44,7 @@ class PhotoFactory(factory.django.DjangoModelFactory):
     date_modified = datetime.datetime.now()
     image = SimpleUploadedFile(
         name='example.jpg',
-        content=open('/Users/woojgh/Documents/Projects/Code401/django_imager/django_imager/static/django_imager/Death_star_home.png', 'rb').read(),
+        content=open('/Users/woojgh/Documents/django_imager/django_imager/static/django_imager/Death_star_home.png', 'rb').read(),
         content_type='image/png')
 
 
