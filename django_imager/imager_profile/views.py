@@ -1,15 +1,12 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render
 from django.contrib.auth import views as auth_views
-from django.contrib.auth import logout
-from user_images.models import Photo, Album, User
-from django.http import HttpResponse, HttpResponseRedirect
+from user_images.models import Photo, Album
+from django.http import HttpResponseRedirect
 from imager_profile.forms import ImageUploadForm, AlbumUploadForm, EditImageForm, EditAlbumForm
-from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
-from imager_profile.forms import DocumentForm
 from django.views import View
 from django.views.generic import UpdateView, ListView
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 
 
 class home_view(View):
@@ -18,22 +15,20 @@ class home_view(View):
         return render(request, 'django_imager/home.html')
 
 
-# def account_view(request):
-#     return render(request, 'django_imager/account.html')
-
-
 class profile_view(View):
+    """Profile iew callable, for the profile page"""
     def get(self, request):
         return render(request, 'django_imager/profile.html')
 
 
 class logout_view(View):
+    """Logout iew callable, for the logout page"""
     def get(self, request):
-        # message user or whatever
         return auth_views.logout(request)
 
 
 class album_view(View):
+    """Album view callable, for the album page"""
     def get(self, request):
         album = Album.objects.all()
         context = {
@@ -43,6 +38,7 @@ class album_view(View):
 
 
 class edit_album(View):
+    """View for editing the abums that have been created."""
     form_class = EditAlbumForm
     initial = {'form': 'form'}
     template_name = 'user_images/edit_album.html'
@@ -63,6 +59,7 @@ class edit_album(View):
 
 
 class library_view(ListView):
+    """View for the library or the page that shows all the users images and albums."""
     def get(self, request, page_num=1):
         pages = Paginator(Photo.objects.all(), 4)
         photos = pages.page(1)
@@ -76,7 +73,7 @@ class library_view(ListView):
 
 
 class edit_image(UpdateView):
-    # import pdb; pdb.set_trace()
+    """View for editing images that have been uploadded to server."""
     model = Photo
     fields = ['title', 'description']
     template_name_suffix = '_update_form'
@@ -93,7 +90,6 @@ class edit_image(UpdateView):
         request.POST = dict(request.POST)
         request.POST['user'] = request.user.id
         form = EditImageForm(request.POST, instance=photo)
-        # import pdb; pdb.set_trace()
         if form.is_valid():
             form.save(commit=False)
             form.save_m2m()
@@ -103,7 +99,7 @@ class edit_image(UpdateView):
 
 
 class add_image_view(View):
-
+    """This is the view that is used when adding an image to the database."""
     form_class = ImageUploadForm
     initial = {'form': 'form'}
     template_name = 'user_images/add_image.html'
@@ -129,7 +125,7 @@ class add_image_view(View):
 
 
 class add_album_view(View):
-
+    """View used for adding an album to the user."""
     form_class = ImageUploadForm
     initial = {'form': 'form'}
     template_name = 'user_images/add_image.html'
@@ -155,6 +151,7 @@ class add_album_view(View):
 
 
 class thumb_view(View):
+    """View used for looking at images thumbnails."""
     def get(self, request):
         items = Album.objects.all()
         context = {
