@@ -18,7 +18,7 @@ class Photo(models.Model):
     user = models.ForeignKey(User)
     image = models.ImageField(upload_to='uploaded_images/%Y-%m-%d', null=True)
     title = models.CharField(max_length=140, blank=False)
-    description = models.CharField(max_length=200, blank=True)
+    description = models.CharField(max_length=255, blank=True)
     date_uploaded = models.DateField(auto_now=True)
     date_modified = models.DateField(auto_now=True)
     date_published = models.DateField(auto_now_add=True)
@@ -44,11 +44,11 @@ class Album(models.Model):
     uploaded_images = models.ManyToManyField(Photo)
     image = models.ImageField(Photo, null=True)
     title = models.CharField(max_length=140, blank=False)
-    description = models.CharField(max_length=200, blank=True)
+    description = models.CharField(max_length=255, blank=True)
     date_uploaded = models.DateField(auto_now=True)
     date_modified = models.DateField(auto_now=True)
     date_published = models.DateField(auto_now_add=True)
-    published = models.CharField(choices=PUBLISHED_CHOICES, default='public', max_length=10 )
+    published = models.CharField(choices=PUBLISHED_CHOICES, default='public', max_length=10)
     tags = TaggableManager()
 
     def __repr__(self):
