@@ -16,13 +16,13 @@ class home_view(View):
 
 
 class profile_view(View):
-    """Profile iew callable, for the profile page"""
+    """Profile view callable, for the profile page"""
     def get(self, request):
         return render(request, 'django_imager/profile.html')
 
 
 class logout_view(View):
-    """Logout iew callable, for the logout page"""
+    """Logout view callable, for the logout page"""
     def get(self, request):
         return auth_views.logout(request)
 

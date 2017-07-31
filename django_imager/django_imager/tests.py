@@ -188,7 +188,7 @@ class LoginLogout(TestCase):
         self.assertTrue(b'login' in response.content.lower())
 
     def test_authenticated_user_name_on_home(self):
-        """Test authenticated user's name shows up on home."""
+        """Test authenticated user's name shows up on home view."""
         test_user = User(username='GnarefortheGarthack')
         test_user.set_password('GnarefortheGarthack')
         test_user.save()
@@ -207,7 +207,6 @@ class LoginLogout(TestCase):
 
     def test_successful_login_reroutes(self):
         """Test successful login reroutes to home page."""
-        # import pdb; pdb.set_trace()
         test_user = User(username='GnarefortheGarthack')
         test_user.set_password('GnarefortheGarthack')
         test_user.save()

@@ -1,8 +1,7 @@
 """Tests for Imager Profile app."""
 
-from django.conf import settings
 from django.contrib.auth.models import User
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, Client
 from user_images.models import Photo, Album
@@ -88,14 +87,6 @@ class PhotoTestModels(TestCase):
         self.user.delete()
         self.assertEqual(Photo.objects.count(), 0)
 
-    # def test_uploaded_photo_lives_in_media_user_photos(self):
-    #     """New photo lives in the correct directory."""
-    #     import pdb; pdb.set_trace()
-    #     upload_dir = os.path.join(settings.MEDIA_ROOT)
-    #     directory_contents = os.listdir(upload_dir)
-    #     name = self.image.image.name.split('/')[1]
-    #     self.assertTrue(name in directory_contents)
-
     def test_can_change_uploaded_photo_privacy_setting(self):
         """Upated published setting works."""
         self.image.published = 'PB'
@@ -131,7 +122,7 @@ class TestPhotoView(TestCase):
         )
         user_2 = User(
             username='James',
-            email='kurt@kurt.com'
+            email='James@James.com'
         )
         user_3 = User(
             username='oprah',
@@ -265,12 +256,12 @@ class TestLibraryView(TestCase):
             email='AlfredMolina@AlfredMolina.com'
         )
         user_2 = User(
-            username='kurt',
-            email='kurt@kurt.com'
+            username='James',
+            email='James@James.com'
         )
         user_3 = User(
-            username='mcgee',
-            email='mcgee@mcgee.com'
+            username='monkies',
+            email='monkies@monkies.com'
         )
         user_1.save()
         user_2.save()
@@ -353,12 +344,12 @@ class TestAlbumView(TestCase):
             email='AlfredMolina@AlfredMolina.com'
         )
         user_2 = User(
-            username='kurt',
-            email='kurt@kurt.com'
+            username='James',
+            email='James@James.com'
         )
         user_3 = User(
-            username='mcgee',
-            email='mcgee@mcgee.com'
+            username='monkies',
+            email='monkies@monkies.com'
         )
         user_1.save()
         user_2.save()
