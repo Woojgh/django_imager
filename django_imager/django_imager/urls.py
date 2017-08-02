@@ -1,7 +1,7 @@
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from imager_profile.views import album_view, home_view, add_image_view, profile_view, logout_view, library_view, thumb_view, add_album_view, edit_image, edit_album
+from imager_profile.views import TagListView, album_view, home_view, add_image_view, profile_view, logout_view, library_view, thumb_view, add_album_view, edit_image, edit_album
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^thumb/$', thumb_view, name='thumb'),
     url(r'^add_image/$', add_image_view.as_view(), name='add_image'),
     url(r'^add_album/$', add_album_view, name='add_album'),
+    url(r'^tagged/(?P<slug>[-\w]+)/$', TagListView.as_view(), name="tagged_books"),
     url(r'^edit_image/(?P<pk>\d+)/$', edit_image.as_view(), name='edit_image'),
     url(r'^edit_album/(?P<pk>\d+)/$', edit_album.as_view(), name='edit_album'),
     url(r'^', include('imager_api.urls')),
