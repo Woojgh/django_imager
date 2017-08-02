@@ -63,7 +63,7 @@ class library_view(ListView):
     def get(self, request, page_num=1):
         albums = Album.objects.all()
         photos = Photo.objects.all()
-        paginator = Paginator(photos, 4)
+        paginator = Paginator(photos, 3)
         page = request.GET.get('page')
         try:
             library_pages = paginator.page(page)

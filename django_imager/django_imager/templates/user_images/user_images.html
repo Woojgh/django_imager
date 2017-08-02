@@ -24,7 +24,7 @@
 </ul>
     <p class="album-title">Photos:</p>
 <ul>
-{% for photo in photos %}
+{% for photo in library_pages %}
     <p>Title: {{ photo.title }}</p>
     <p>Description: {{ photo.description }}</p>
     <li>
@@ -33,11 +33,15 @@
 
     </li>
 {% endfor %}
- {% if library_pages.has_previous %}
-            <a href="?page={{ library_pages.previous_page_number }}">previous</a>
-        {% endif %}
+</ul>
+{% if library_pages.has_previous %}
+    <a href="?page={{ library_pages.previous_page_number }}">previous</a>
+    {% endif %}
+    <span class="current">
+        Page {{ library_pages.number }} of {{ library_pages.paginator.num_pages }}.
+    </span>
 {% if library_pages.has_next %}
-            <a href="?page={{ library_pages.next_page_number }}">next</a>
-        {% endif %}
+    <a href="?page={{ library_pages.next_page_number }}">next</a>
+{% endif %}
 {% endblock %}
 
