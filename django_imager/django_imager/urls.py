@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^edit_image/(?P<pk>\d+)/$', edit_image.as_view(), name='edit_image'),
     url(r'^edit_album/(?P<pk>\d+)/$', edit_album.as_view(), name='edit_album'),
     url(r'^', include('imager_api.urls')),
+    url('', include('social_django.urls', namespace='social')),
+    url('', include('django.contrib.auth.urls', namespace='auth')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
