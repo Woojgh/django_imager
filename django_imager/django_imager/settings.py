@@ -35,6 +35,8 @@ TAGGIT_CASE_INSENSITIVE = True
 # ACCOUNT_LOGOUT_ON_GET = True
 
 # Application definition
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -51,7 +53,27 @@ INSTALLED_APPS = [
     'taggit',
     'rest_framework',
     'imager_api',
+    'social_django'
 ]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'access_type': 'offline',
+    'approval_prompt': 'force'
+}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '409253587388-u5aqp74qu5ab2gdf4rn1id203e49clso.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'wmg461Jk_X0mfj_3ux9rn-8W'
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.yahoo.YahooOpenId',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +83,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 
@@ -70,6 +93,20 @@ ROOT_URLCONF = 'django_imager.urls'
 #       BASE_DIR + '/templates',
 #       BASE_DIR + '/registration'
 #   )
+
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+)
 
 TEMPLATES = [
     {
@@ -82,6 +119,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
