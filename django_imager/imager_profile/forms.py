@@ -30,7 +30,7 @@ class AlbumUploadForm(forms.ModelForm):
 
 
 class EditAlbumForm(forms.ModelForm):
-
+    """Album upload form."""
     class Meta:
         model = Album
         exclude = ['user', 'date_uploaded', 'date_published', 'published', 'image']

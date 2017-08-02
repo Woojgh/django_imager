@@ -1,7 +1,5 @@
 """Model for our user images."""
 from django.db import models
-from django import forms
-from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
 
 from taggit.managers import TaggableManager
@@ -15,6 +13,7 @@ PUBLISHED_CHOICES = [
 
 
 class Photo(models.Model):
+    """The model for when needing to add or manipulate images."""
     user = models.ForeignKey(User)
     image = models.ImageField(upload_to='uploaded_images/%Y-%m-%d', null=True)
     title = models.CharField(max_length=140, blank=False)
@@ -40,6 +39,7 @@ class Photo(models.Model):
 
 
 class Album(models.Model):
+    """Model used for when dealing with albums."""
     user = models.ForeignKey(User)
     uploaded_images = models.ManyToManyField(Photo)
     image = models.ImageField(Photo, null=True)
