@@ -21,5 +21,8 @@
     </li>
 {% endfor %}
 </ul>
+{% if tag %}
+    <h2>albums Tagged As {{ tag }}</h2>
+{% endif %}
 {% endblock %}
 

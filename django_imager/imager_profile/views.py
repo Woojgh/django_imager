@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views import View
 from django.views.generic import UpdateView, ListView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from taggit.models import Tag
 
 
 class home_view(View):
@@ -65,6 +66,7 @@ class library_view(ListView):
         photos = Photo.objects.all()
         paginator = Paginator(photos, 3)
         page = request.GET.get('page')
+        tags = Tag.objects.all()
         try:
             library_pages = paginator.page(page)
         except PageNotAnInteger:
@@ -76,6 +78,7 @@ class library_view(ListView):
             "photos": photos,
             "albums": albums,
             "library_pages": library_pages,
+            "tags": tags
             }
         return render(request, 'user_images/user_images.html', context=context)
 
@@ -94,7 +97,7 @@ class edit_image(UpdateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
-        photo = Photo.objects.get(pk=kwargs['id'])
+        photo = Photo.objects.get(pk=kwargs['pk'])
         request.POST = dict(request.POST)
         request.POST['user'] = request.user.id
         form = EditImageForm(request.POST, instance=photo)
@@ -166,3 +169,22 @@ class thumb_view(View):
             "items": items
             }
         return render(request, 'user_images/thumb.html', context=context)
+
+
+class TagListView(ListView):
+    """The listing for tagged books."""
+
+    template_name = "user_images/library.html"
+
+    def get_queryset(self):
+        """Filter queryset by slug."""
+        # import pdb; pdb.set_trace()
+        return (Photo.objects.filter(tags__slug=self.kwargs.get("slug"))
+                             .filter(published='PB')
+                             .all())
+
+    def get_context_data(self, **kwargs):
+        """Return the context with the given tags."""
+        context = super(TagListView, self).get_context_data(**kwargs)
+        context["tag"] = self.kwargs.get("slug")
+        return context

@@ -27,13 +27,25 @@
 {% for photo in library_pages %}
     <p>Title: {{ photo.title }}</p>
     <p>Description: {{ photo.description }}</p>
+    {% for tag in photo.tags.all %}
+        <p>Tags: {{ tag.name }}</p>
+    {% endfor %}
     <li>
         <a href="{{ photo.image.url }}"><img src="{{ photo.image.url }}" /></a>
-        <a href="/edit_image/{{ photo.id }}">Edit Image</a>
+        <a href="/edit_image/{{ photo.pk }}">Edit Image</a>
 
     </li>
 {% endfor %}
 </ul>
+{% for object in objects %}
+    <h2>{{ object.title }}</h2>
+    <p>{{ object.content }}</p>
+    <ul>
+        {% for tag in object.tags.all %}
+            <li> {{ tag.name }} </li>
+        {% endfor %}
+    </ul>
+{% endfor %}
 {% if library_pages.has_previous %}
     <a href="?page={{ library_pages.previous_page_number }}">previous</a>
     {% endif %}
@@ -44,4 +56,5 @@
     <a href="?page={{ library_pages.next_page_number }}">next</a>
 {% endif %}
 {% endblock %}
+
 
