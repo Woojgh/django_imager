@@ -74,15 +74,15 @@ class PhotoTestModels(TestCase):
         to_delete = os.path.join(MEDIA_ROOT, 'user_images', 'example*.jpg')
         os.system('rm -rf ' + to_delete)
 
-    def test_upload_image_adds_new_photo_instance(self):
+    def test_upload_image_adds_new_photo(self):
         """New photo has been created."""
         self.assertEqual(Photo.objects.count(), 1)
 
-    def test_new_photo_is_private_by_default(self):
+    def test_new_photo_is_private(self):
         """New photo has default published setting."""
         self.assertEqual(self.image.published, 'public')
 
-    def test_delete_user_with_photos_photos_die(self):
+    def test_delete_user_deleets_photos(self):
         """Deleted user's photos are deleted."""
         self.user.delete()
         self.assertEqual(Photo.objects.count(), 0)
@@ -196,7 +196,7 @@ class AlbumsTestModels(TestCase):
             username='AlfredMolina',
             email='AlfredMolina@AlfredMolina.com'
         )
-        user.set_password('morgaaaaan')
+        user.set_password('monkies')
         user.save()
         self.user = user
 
