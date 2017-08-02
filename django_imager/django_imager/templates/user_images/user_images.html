@@ -33,12 +33,11 @@
 
     </li>
 {% endfor %}
-</ul>
-{% if photos.has_previous %}
-    <a href="{% 'library' page_num=photos.previous_page_number %"><button>Previous Page</button></a>
-{% endif %}
-{% if photos.has_next %}
-    <a href="{% 'library' page_num=photos.next_page_number %"><button>Next Page</button></a>
-{% endif %}
+ {% if library_pages.has_previous %}
+            <a href="?page={{ library_pages.previous_page_number }}">previous</a>
+        {% endif %}
+{% if library_pages.has_next %}
+            <a href="?page={{ library_pages.next_page_number }}">next</a>
+        {% endif %}
 {% endblock %}
 
