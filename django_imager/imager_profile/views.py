@@ -6,7 +6,7 @@ from imager_profile.forms import ImageUploadForm, AlbumUploadForm, EditImageForm
 from django.core.urlresolvers import reverse_lazy
 from django.views import View
 from django.views.generic import UpdateView, ListView
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 class home_view(View):
@@ -61,14 +61,22 @@ class edit_album(View):
 class library_view(ListView):
     """View for the library or the page that shows all the users images and albums."""
     def get(self, request, page_num=1):
-        pages = Paginator(Photo.objects.all(), 4)
-        photos = pages.page(1)
         albums = Album.objects.all()
+        photos = Photo.objects.all()
+        paginator = Paginator(photos, 3)
+        page = request.GET.get('page')
+        try:
+            library_pages = paginator.page(page)
+        except PageNotAnInteger:
+            library_pages = paginator.page(1)
+        except EmptyPage:
+            library_pages = paginator.page(paginator.num_pages)
+
         context = {
             "photos": photos,
             "albums": albums,
+            "library_pages": library_pages,
             }
-
         return render(request, 'user_images/user_images.html', context=context)
 
 
