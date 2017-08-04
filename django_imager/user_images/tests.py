@@ -1,4 +1,4 @@
-"""Tests for Imager Profile app."""
+"""Tests for Imager Profile app. THank you Morgan Numura for the help!"""
 
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
