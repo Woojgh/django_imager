@@ -450,53 +450,6 @@ class TestAddPhotos(TestCase):
         response = self.client.get(reverse_lazy('add_image'))
         self.assertEqual(response.status_code, 200)
 
-    # def test_user_redirects_after_successful_post(self):
-    #     """Test that a successful post redirects to the library."""
-    #     # from django.views.generic.edit import CreateView
-    #     self.client.force_login(self.user)
-    #     response = self.client.post(reverse_lazy('add_image'),
-    #                                 {'title': 'New Test Photo',
-    #                                  'description': 'Short description goes here.',
-    #                                  'published': 'PV',
-    #                                  'photo': ''})
-    #     self.assertRedirects(response, '/images/library/')
-
-    # def test_user_cant_submit_without_photo(self):
-    #     """Test form response.."""
-    #     self.client.force_login(self.user)
-    #     response = self.client.post(reverse_lazy('add_image'),
-    #                                 {'title': 'New Test Photo',
-    #                                  'description': 'Short description goes here.',
-    #                                  'published': 'PV',
-    #                                  'photo': ''})
-    #     self.assertFormError(response, 'form', 'photo', 'This field is required.')
-
-    # def test_photo_in_database(self):
-    #     """."""
-    #     self.assertEqual(len(Photo.objects.all()), 0)
-    #     self.client.force_login(self.user)
-    #     response = self.client.post(reverse_lazy('add_image'),
-    #                                 {'title': 'New Test Photo',
-    #                                  'description': 'Short description goes here.',
-    #                                  'published': 'PV',
-    #                                  'photo': self.album.image})
-    #     self.assertRedirects(response, '/images/library/')
-    #     self.assertEqual(len(Photo.objects.all()), 1)
-
-    # def test_logged_in_user_library_view_shows_correct_photo_count(self):
-    #     """Logged-in user sees correct photo count."""
-    #     self.client.force_login(self.user)
-    #     self.client.post(reverse_lazy('add_image'),
-    #                      {'title': 'New Test Photo',
-    #                       'description': 'Short description goes here.',
-    #                       'published': 'PV',
-    #                       'photo': self.photo})
-    #     response = self.client.get(reverse('library'))
-    #     html = BeautifulSoup(response.content, 'html.parser')
-    #     photos = html.find_all('li', 'photo')
-    #     photos = Photo.objects.filter(user=self.user)
-    #     self.assertEqual(1, len(photos))
-
 
 class TestPhotoEdit(TestCase):
     """Tests to verify a user can update an existing album."""
@@ -606,72 +559,7 @@ class TestAddAlbums(TestCase):
         """Teardown when tests complete."""
         to_delete = os.path.join(MEDIA_ROOT, 'user_images', 'example*.jpg')
         os.system('rm -rf ' + to_delete)
-
-    # def test_user_must_be_logged_in_to_add_album(self):
-    #     """User must be logged in to add album."""
-    #     response = self.client.get(reverse_lazy('add_album'))
-    #     self.assertRedirects(response, '/accounts/login/?next=/images/add_album/')
-
-    # def test_get_on_add_album_page(self):
-    #     """Test that we get 200 response code for adding albums."""
-    #     self.client.force_login(self.user)
-    #     response = self.client.get(reverse_lazy('add_album'))
-    #     self.assertEqual(response.status_code, 200)
-
-    # def test_form_post_redirects(self):
-    #     """Test user is redirected after successful post."""
-    #     self.client.force_login(self.user)
-    #     photo = Photo.objects.all()
-    #     photo_id = photo[0].id
-    #     response = self.client.post(reverse_lazy('add_album'),
-    #                                 {'title': 'Test Album',
-    #                                  'description': 'Short description goes here',
-    #                                  'photos': photo_id,
-    #                                  'cover': '',
-    #                                  'published': 'PV'})
-    #     self.assertRedirects(response, '/images/library/')
-
-    # def test_user_cant_submit_album_without_photo(self):
-    #     """Test adding album requires photos."""
-    #     self.client.force_login(self.user)
-    #     response = self.client.post(reverse_lazy('add_album'),
-    #                                 {'title': 'Test Album',
-    #                                  'description': 'Short description goes here',
-    #                                  'photos': None,
-    #                                  'cover': self.photo,
-    #                                  'published': 'PV'})
-    #     self.assertFormError(response, 'form', 'photos', '"None" is not a valid value for a primary key.')
-
-    # def test_album_in_database(self):
-    #     """Test album is in the database."""
-    #     self.assertEqual(Album.objects.count(), 0)
-    #     self.client.force_login(self.user)
-    #     photo = Photo.objects.all()
-    #     photo_id = photo[0].id
-    #     self.client.post(reverse_lazy('add_album'),
-    #                      {'title': 'Test Album',
-    #                       'description': 'Short description goes here',
-    #                       'photos': photo_id,
-    #                       'cover': '',
-    #                       'published': 'PV'})
-    #     self.assertEqual(Album.objects.count(), 1)
-
-    # def test_logged_in_user_library_view_shows_correct_album_count(self):
-    #     """Logged-in user sees correct album count."""
-    #     self.client.force_login(self.user)
-    #     photo = Photo.objects.all()
-    #     photo_id = photo[0].id
-    #     self.client.post(reverse('add_album'),
-    #                      {'title': 'Test Album',
-    #                       'description': 'Short description goes here',
-    #                       'photos': photo_id,
-    #                       'cover': photo_id,
-    #                       'published': 'PV'})
-    #     response = self.client.get(reverse('library'))
-    #     html = BeautifulSoup(response.content, 'html.parser')
-    #     albums = html.find_all('li', 'album')
-    #     self.assertEqual(1, len(albums))
-
+        
 
 class TestAlbumEdit(TestCase):
     """Tests to verify a user can update an existing album."""
