@@ -135,7 +135,7 @@ WSGI_APPLICATION = 'django_imager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DATABASE_NAME', ''),
+        'NAME': 'RAM',
         'USER': os.environ.get('DATABASE_USER', ''),
         'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
         'HOST': os.environ.get('DATABASE_HOST', ''),
@@ -210,3 +210,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
+
+SECRET_KEY='@0f^pqf*29c^%jm%3!jbnafyta_pcajp4resikbm+j&ai4r!)y'
