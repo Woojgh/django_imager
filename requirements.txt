@@ -44,7 +44,7 @@ google-cloud-vision==0.25.0
 google-gax==0.15.13
 googleapis-common-protos==1.5.2
 grpcio==1.4.0
-httplib2==0.10.3
+httplib2==0.18.0
 hupper==1.0
 idna==2.5
 ipaddress==1.0.18
