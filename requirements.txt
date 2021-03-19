@@ -24,7 +24,7 @@ dill==0.2.7
 Django==1.11.3
 django-registration==2.2
 django-taggit==0.22.1
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 docker-py==1.7.2
 dockerpty==0.4.1
 docopt==0.6.2
