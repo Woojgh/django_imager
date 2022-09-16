@@ -55,7 +55,7 @@ Jinja2==2.7.3
 jmespath==0.9.3
 jsonschema==2.6.0
 jupyter-core==4.3.0
-Mako==1.0.6
+Mako==1.2.2
 MarkupSafe==0.23
 matplotlib==2.0.2
 MySQL-python==1.2.5
